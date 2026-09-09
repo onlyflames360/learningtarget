@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscador — ¿Qué necesito para...?</title>
+    <link rel="stylesheet" href="css/buscar.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="sitenav">
+        <div class="nav-links">
+          <a href="index.html">Tarjetas</a>
+          <a href="metodos.html">Métodos</a>
+          <a href="buscar.html" class="active">Buscador</a>
+          <a href="ejercicios.html">Ejercicios</a>
+          <a href="constructor.html">Construye código</a>
+          <a href="juego.html">Juego</a>
+          <a href="pensar.html">Cómo pensar</a>
+          <a href="entrenador.html">Entrenador</a>
+          <a href="carpetas.html">Carpetas</a>
+          <a href="proyectos.html">Proyectos</a>
+        </div>
+        <button id="themeToggle" type="button">Modo oscuro</button>
+      </nav>
+
+      <header class="topbar">
+        <p class="eyebrow">Busca por lo que quieres hacer</p>
+        <h1>¿Qué necesito para...?</h1>
+        <p class="subtitle">
+          No hace falta que sepas cómo se llama. Escríbelo con tus palabras
+          —"cambiar número a texto", "contador de letras", "guardar datos"—
+          y te digo <strong>cuál es la herramienta que buscas</strong>, qué
+          es exactamente y cómo se usa.
+        </p>
+      </header>
+
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input
+          id="buscadorInput"
+          type="text"
+          autocomplete="off"
+          placeholder="Ej: cambiar número a texto, contar palabras, al pulsar un botón..."
+        />
+        <button class="limpiar-btn" id="limpiarBtn" type="button">Limpiar</button>
+      </div>
+
+      <div class="chips" id="chips"></div>
+
+      <main id="resultados"></main>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/metodos-data.js"></script>
+    <script src="js/buscar-data.js"></script>
+    <script src="js/buscar.js"></script>
+  </body>
+</html>

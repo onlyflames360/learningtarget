@@ -12,6 +12,12 @@ Sitio estático de estudio de JavaScript, dividido en 8 páginas:
   Eventos, Texto, Conversión, Matemáticas, Promesas, Fetch y CRUD completo
   primero; Objetos del navegador, Módulos ES6 y TypeScript básico (lo menos
   usado) al final.
+- `buscar.html` — **buscador por intención**: escribes lo que quieres hacer
+  con tus palabras ("cambiar número a texto", "contador de letras", "guardar
+  datos aunque cierre el navegador") y te dice cuál es la herramienta que
+  buscas, qué es exactamente y un ejemplo de uso. Indexa 68 intenciones
+  curadas + los 160 métodos de `metodos-data.js`. Sin query muestra un
+  resumen de todo lo que contiene.
 - `ejercicios.html` — quiz a/b/c por cada proyecto de `proyectos.html` (30
   preguntas en total), ordenadas de fácil a nivel senior dentro de cada tema.
   El progreso por tema se guarda en `localStorage`.
