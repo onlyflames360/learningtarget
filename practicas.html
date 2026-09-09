@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Construye el código</title>
-    <link rel="stylesheet" href="css/constructor.css" />
+    <title>Buenas prácticas</title>
+    <link rel="stylesheet" href="css/practicas.css" />
   </head>
   <body>
     <div class="wrap">
@@ -14,10 +14,10 @@
           <a href="metodos.html">Métodos</a>
           <a href="buscar.html">Buscador</a>
           <a href="identificar.html">Identificar</a>
-          <a href="practicas.html">Buenas prácticas</a>
+          <a href="practicas.html" class="active">Buenas prácticas</a>
           <a href="typescript.html">TypeScript</a>
           <a href="ejercicios.html">Ejercicios</a>
-          <a href="constructor.html" class="active">Construye código</a>
+          <a href="constructor.html">Construye código</a>
           <a href="juego.html">Juego</a>
           <a href="pensar.html">Cómo pensar</a>
           <a href="entrenador.html">Entrenador</a>
@@ -28,28 +28,32 @@
       </nav>
 
       <header class="topbar">
-        <p class="eyebrow">Responde a, b o c y mira cómo se construye</p>
-        <h1>Construye el código</h1>
+        <p class="eyebrow">Escribir código que se entienda dentro de un año</p>
+        <h1>Buenas prácticas</h1>
         <p class="subtitle">
-          Elige un ejercicio. Cada paso queda bloqueado hasta que aciertas:
-          solo entonces se añade la línea al programa que se está formando
-          debajo y se desbloquea el siguiente paso.
+          Reglas cortas, con el <strong>antes y el después</strong> al lado
+          para verlo de un vistazo. Empieza con lo esencial; cuando eso ya te
+          salga solo, activa el resto de matices.
         </p>
       </header>
 
-      <div class="program-grid" id="programGrid"></div>
+      <section class="checklist-box">
+        <h2>⚡ El resumen de todo, en 30 segundos</h2>
+        <p class="checklist-nota">
+          Si solo te llevas una cosa de esta página, que sea esta lista.
+        </p>
+        <ol id="checklist"></ol>
+      </section>
 
-      <div class="workspace">
-        <section class="quiz-panel" id="quizPanel"></section>
-        <section class="code-panel">
-          <h2>Código en construcción</h2>
-          <pre class="code-output" id="codeOutput"></pre>
-        </section>
+      <div class="filtro-fila">
+        <button id="filtroBtn" type="button"></button>
       </div>
+
+      <div class="temas" id="temas"></div>
     </div>
 
     <script src="js/theme.js"></script>
-    <script src="js/constructor-data.js"></script>
-    <script src="js/constructor.js"></script>
+    <script src="js/practicas-data.js"></script>
+    <script src="js/practicas.js"></script>
   </body>
 </html>

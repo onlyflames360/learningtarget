@@ -29,6 +29,13 @@ Sitio estático de estudio de JavaScript, dividido en 8 páginas:
   el problema que resuelve y con el JS al lado; sección dedicada a
   **descifrar los errores del compilador** (TS2322, TS2339, TS18047...), 6
   ejercicios de tipado y una guía de arranque con reglas de oro.
+- `practicas.html` — **buenas prácticas** de escritura de código, pensadas
+  para leerse rápido: cada regla es una línea, con el porqué y el ❌/✅ en
+  código al lado. 8 temas (funciones, nombres, listas, condicionales, DOM,
+  eventos, asincronía y organización) con 38 prácticas, un checklist de 9
+  puntos que resume todo y la receta de 10 pasos para convertir código
+  repetido en una función. Un interruptor deja ver solo las 24 esenciales
+  o las 38 completas, y recuerda la preferencia.
 - `ejercicios.html` — quiz a/b/c por cada proyecto de `proyectos.html` (30
   preguntas en total), ordenadas de fácil a nivel senior dentro de cada tema.
   El progreso por tema se guarda en `localStorage`.
