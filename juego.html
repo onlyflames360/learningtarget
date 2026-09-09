@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Quest — Piensa como developer</title>
+    <link rel="stylesheet" href="css/juego.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="sitenav">
+        <div class="nav-links">
+          <a href="index.html">Tarjetas</a>
+          <a href="metodos.html">Métodos</a>
+          <a href="ejercicios.html">Ejercicios</a>
+          <a href="constructor.html">Construye código</a>
+          <a href="juego.html" class="active">Juego</a>
+          <a href="pensar.html">Cómo pensar</a>
+          <a href="entrenador.html">Entrenador</a>
+          <a href="carpetas.html">Carpetas</a>
+          <a href="proyectos.html">Proyectos</a>
+        </div>
+      </nav>
+
+      <header class="game-header">
+        <h1 class="game-title">CODE QUEST</h1>
+        <p class="game-sub">
+          Cinco mundos, cinco monstruos y un jefe final. Aquí no se memoriza
+          sintaxis: se entrena la decisión. Ante cada situación tendrás que
+          elegir <strong>qué harías tú</strong> — que es exactamente lo que
+          hace un developer antes de escribir una sola línea.
+        </p>
+      </header>
+
+      <div class="hud">
+        <span class="hud-item">⚡ XP <span class="hud-value" id="hudXp">0</span></span>
+        <span class="hud-item">🗺️ Mundos <span class="hud-value" id="hudNiveles">0/6</span></span>
+        <button class="hud-item" id="resetBtn" type="button" style="cursor: pointer">
+          🔄 Reiniciar partida
+        </button>
+      </div>
+
+      <main id="app"></main>
+    </div>
+
+    <script src="js/juego-data.js"></script>
+    <script src="js/juego.js"></script>
+  </body>
+</html>

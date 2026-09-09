@@ -20,6 +20,13 @@ Sitio estático de estudio de JavaScript, dividido en 8 páginas:
   programa completo y funcional. Ejercicios centrados en variables, bucles +
   arrays, funciones + arrays, clases y constructores, y selectores DOM +
   eventos.
+- `juego.html` — **Code Quest**: videojuego por niveles con tema arcade
+  (neón, combos, corazones, confeti). 5 mundos temáticos con su monstruo
+  (Variables, Bucles, Funciones, DOM/Eventos, Clases) y un **jefe final**
+  donde diseñas una app entera tomando decisiones. Las preguntas no son de
+  sintaxis: entrenan reconocer qué herramienta pide cada situación, para
+  que ante un ejercicio nuevo no te quedes en blanco. Progreso, estrellas y
+  XP en `localStorage`.
 - `pensar.html` — guía de método en 6 pasos para planificar un ejercicio
   antes de programarlo, más preguntas guía para cada proyecto.
 - `entrenador.html` — entrenador interactivo de descomposición: describes tu
