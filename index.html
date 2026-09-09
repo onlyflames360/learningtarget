@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarjetas de aprender</title>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <nav class="sitenav">
+      <div class="nav-links">
+        <a href="index.html" class="active">Tarjetas</a>
+        <a href="metodos.html">Métodos</a>
+        <a href="ejercicios.html">Ejercicios</a>
+        <a href="constructor.html">Construye código</a>
+        <a href="pensar.html">Cómo pensar</a>
+        <a href="entrenador.html">Entrenador</a>
+        <a href="carpetas.html">Carpetas</a>
+        <a href="proyectos.html">Proyectos</a>
+      </div>
+      <button id="themeToggle" type="button">Modo oscuro</button>
+    </nav>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Aprendizaje activo</p>
+          <h1>Tarjetas de aprender</h1>
+        </div>
+        <button id="shuffleBtn" class="btn ghost" type="button">Mezclar</button>
+      </header>
+
+      <div class="lang-filters" id="langFilters"></div>
+
+      <div class="stats">
+        <div class="counter">
+          <span id="currentIndex">1</span>
+          <span>/</span>
+          <span id="totalCards">0</span>
+        </div>
+        <div class="progress" id="progressLabel">0% aprendido</div>
+      </div>
+
+      <article
+        id="card"
+        class="card"
+        tabindex="0"
+        aria-live="polite"
+        aria-label="Tarjeta de estudio"
+      >
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <span class="tag">Pregunta</span>
+            <p id="frontText"></p>
+          </div>
+          <div class="card-face card-back">
+            <span class="tag alt">Respuesta</span>
+            <p id="backText"></p>
+          </div>
+        </div>
+      </article>
+
+      <div class="controls">
+        <button id="prevBtn" class="btn secondary" type="button">
+          Anterior
+        </button>
+        <button id="flipBtn" class="btn primary" type="button">Voltear</button>
+        <button id="nextBtn" class="btn secondary" type="button">
+          Siguiente
+        </button>
+      </div>
+
+      <div class="meta">
+        <button id="learnedBtn" class="btn ghost" type="button">
+          Marcar como aprendida
+        </button>
+        <div class="learned" id="learnedCount">0 aprendidas</div>
+      </div>
+    </main>
+
+    <section class="deck-wrap">
+      <h2 class="deck-title">Métodos (de <a href="metodos.html">Métodos</a>)</h2>
+      <div class="mini-grid" id="gridMetodos"></div>
+
+      <h2 class="deck-title">Cómo pensar (de <a href="pensar.html">Cómo pensar</a>)</h2>
+      <div class="mini-grid" id="gridPensar"></div>
+    </section>
+
+    <script src="js/theme.js"></script>
+    <script src="js/index-data.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

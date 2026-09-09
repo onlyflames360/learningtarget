@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Construye el código</title>
+    <link rel="stylesheet" href="css/constructor.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="sitenav">
+        <div class="nav-links">
+          <a href="index.html">Tarjetas</a>
+          <a href="metodos.html">Métodos</a>
+          <a href="ejercicios.html">Ejercicios</a>
+          <a href="constructor.html" class="active">Construye código</a>
+          <a href="pensar.html">Cómo pensar</a>
+          <a href="entrenador.html">Entrenador</a>
+          <a href="carpetas.html">Carpetas</a>
+          <a href="proyectos.html">Proyectos</a>
+        </div>
+        <button id="themeToggle" type="button">Modo oscuro</button>
+      </nav>
+
+      <header class="topbar">
+        <p class="eyebrow">Responde a, b o c y mira cómo se construye</p>
+        <h1>Construye el código</h1>
+        <p class="subtitle">
+          Elige un ejercicio. En cada paso eliges a, b o c; la línea correcta
+          se añade automáticamente al programa que se está formando debajo,
+          para que veas exactamente cómo queda el código completo al final.
+        </p>
+      </header>
+
+      <div class="program-grid" id="programGrid"></div>
+
+      <div class="workspace">
+        <section class="quiz-panel" id="quizPanel"></section>
+        <section class="code-panel">
+          <h2>Código en construcción</h2>
+          <pre class="code-output" id="codeOutput"></pre>
+        </section>
+      </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/constructor-data.js"></script>
+    <script src="js/constructor.js"></script>
+  </body>
+</html>

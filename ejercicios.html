@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicios por proyecto</title>
+    <link rel="stylesheet" href="css/ejercicios.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="sitenav">
+        <div class="nav-links">
+          <a href="index.html">Tarjetas</a>
+          <a href="metodos.html">Métodos</a>
+          <a href="ejercicios.html" class="active">Ejercicios</a>
+          <a href="constructor.html">Construye código</a>
+          <a href="pensar.html">Cómo pensar</a>
+          <a href="entrenador.html">Entrenador</a>
+          <a href="carpetas.html">Carpetas</a>
+          <a href="proyectos.html">Proyectos</a>
+        </div>
+        <button id="themeToggle" type="button">Modo oscuro</button>
+      </nav>
+
+      <header class="topbar">
+        <p class="eyebrow">Tarjetas de opción múltiple · a, b o c</p>
+        <h1>Ejercicios por proyecto</h1>
+        <p class="subtitle">
+          Un mazo de preguntas por cada proyecto de la sección
+          <a href="proyectos.html">Proyectos</a>, ordenadas de fácil a
+          senior. Elige un tema, responde a, b o c y comprueba la
+          explicación antes de pasar a la siguiente.
+        </p>
+      </header>
+
+      <div class="topic-grid" id="topicFilters"></div>
+
+      <div class="statsrow">
+        <div class="stat-group">
+          <span
+            ><span class="stat-label">Aciertos</span
+            ><span class="stat-value" id="statAciertos">0/0</span></span
+          >
+        </div>
+        <div class="stat-value" id="statPos">0 DE 0</div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <div id="cardArea"></div>
+
+      <p class="next-hint">
+        Teclado: <kbd>a</kbd> · <kbd>b</kbd> · <kbd>c</kbd> para responder,
+        <kbd>Enter</kbd> para la siguiente.
+      </p>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/ejercicios-data.js"></script>
+    <script src="js/ejercicios.js"></script>
+  </body>
+</html>

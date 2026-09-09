@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entrenador de descomposición</title>
+    <link rel="stylesheet" href="css/entrenador.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="sitenav">
+        <div class="nav-links">
+          <a href="index.html">Tarjetas</a>
+          <a href="metodos.html">Métodos</a>
+          <a href="ejercicios.html">Ejercicios</a>
+          <a href="constructor.html">Construye código</a>
+          <a href="pensar.html">Cómo pensar</a>
+          <a href="entrenador.html" class="active">Entrenador</a>
+          <a href="carpetas.html">Carpetas</a>
+          <a href="proyectos.html">Proyectos</a>
+        </div>
+        <button id="themeToggle" type="button">Modo oscuro</button>
+      </nav>
+
+      <header class="topbar">
+        <p class="eyebrow">Entrenamiento de pensamiento computacional</p>
+        <h1>Entrenador de descomposición</h1>
+        <p class="subtitle">
+          Esta herramienta no te da código ni soluciones. Describe tu
+          proyecto o algoritmo, divídelo en piezas pequeñas y, cuando te
+          quedes atascado en una, responde las preguntas guía en vez de
+          buscar la respuesta.
+        </p>
+        <p class="rules">
+          <strong>Reglas del entrenador:</strong> ninguna pieza debería
+          resolver más de una decisión a la vez. Si una pieza mezcla varias
+          cosas ("y", "también", "luego"...), el entrenador te avisará y te
+          ofrecerá dividirla. La pregunta que siempre puedes hacerte:
+          <strong>¿cuál es la decisión más pequeña que puedes tomar ahora
+          mismo?</strong>
+        </p>
+      </header>
+
+      <section class="panel">
+        <h2>1. Tu problema</h2>
+        <textarea
+          id="problemaInput"
+          class="problema-area"
+          placeholder="Describe el proyecto o algoritmo con tus palabras. No hace falta que sea técnico todavía."
+        ></textarea>
+        <div class="hint-warning" id="problemaAviso"></div>
+        <div class="flow-hints" id="flowHints"></div>
+      </section>
+
+      <section class="panel">
+        <h2>2. Piezas del problema</h2>
+        <p class="subtitle" style="margin-bottom: 4px">
+          Cada pieza es la parte más pequeña de una decisión: no "hacer la
+          lista de tareas", sino "leer el valor del input" o "decidir qué
+          pasa si está vacío".
+        </p>
+        <div class="pieces" id="piezasList" style="margin-top: 16px"></div>
+        <div class="piece-actions">
+          <button id="addPieceBtn" class="btn primary" type="button">
+            + Añadir pieza
+          </button>
+          <button id="resetBtn" class="btn ghost" type="button">
+            Empezar de nuevo
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <div class="modal-step" id="modalStep">Pregunta 1 de 7</div>
+        <h3 id="modalTitulo"></h3>
+        <p class="subtitle" id="modalAyuda" style="margin: -8px 0 14px"></p>
+        <textarea id="modalRespuesta" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="modal-actions">
+          <div class="left">
+            <button id="modalAnterior" class="btn ghost" type="button">
+              Anterior
+            </button>
+            <button id="modalCerrar" class="btn ghost" type="button">
+              Cerrar
+            </button>
+          </div>
+          <button id="modalSiguiente" class="btn primary" type="button">
+            Siguiente
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/entrenador-data.js"></script>
+    <script src="js/entrenador.js"></script>
+  </body>
+</html>

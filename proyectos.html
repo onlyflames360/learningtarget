@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyectos JavaScript</title>
+    <link rel="stylesheet" href="css/proyectos.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="sitenav">
+        <div class="nav-links">
+          <a href="index.html">Tarjetas</a>
+          <a href="metodos.html">Métodos</a>
+          <a href="ejercicios.html">Ejercicios</a>
+          <a href="constructor.html">Construye código</a>
+          <a href="pensar.html">Cómo pensar</a>
+          <a href="entrenador.html">Entrenador</a>
+          <a href="carpetas.html">Carpetas</a>
+          <a href="proyectos.html" class="active">Proyectos</a>
+        </div>
+        <button id="themeToggle" type="button">Modo oscuro</button>
+      </nav>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Ruta de aprendizaje</p>
+          <h1>Proyectos JavaScript</h1>
+          <p class="subtitle">
+            9 proyectos prácticos para aprender DOM, eventos, funciones y
+            almacenamiento local, agrupados por tema y ordenados por
+            dificultad.
+          </p>
+        </div>
+      </header>
+
+      <div class="status-banner" id="statusBanner">
+        ✅ Estado de Colección: COMPLETA
+        <small id="statusDetail"></small>
+      </div>
+
+      <section class="path">
+        <h2>Ruta de aprendizaje recomendada</h2>
+        <div class="path-levels" id="pathLevels"></div>
+      </section>
+
+      <div id="themes"></div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/proyectos-data.js"></script>
+    <script src="js/proyectos.js"></script>
+  </body>
+</html>

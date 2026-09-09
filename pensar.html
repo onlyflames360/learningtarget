@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cómo pensar antes de construir</title>
+    <link rel="stylesheet" href="css/pensar.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="sitenav">
+        <div class="nav-links">
+          <a href="index.html">Tarjetas</a>
+          <a href="metodos.html">Métodos</a>
+          <a href="ejercicios.html">Ejercicios</a>
+          <a href="constructor.html">Construye código</a>
+          <a href="pensar.html" class="active">Cómo pensar</a>
+          <a href="entrenador.html">Entrenador</a>
+          <a href="carpetas.html">Carpetas</a>
+          <a href="proyectos.html">Proyectos</a>
+        </div>
+        <button id="themeToggle" type="button">Modo oscuro</button>
+      </nav>
+
+      <header class="topbar">
+        <p class="eyebrow">Antes de escribir código</p>
+        <h1>Cómo pensar un ejercicio antes de construirlo</h1>
+        <p class="subtitle">
+          Escribir código es la última parte, no la primera. Este método en
+          6 pasos ayuda a planear cualquiera de los proyectos de
+          <a href="proyectos.html">Proyectos</a> antes de tocar el teclado,
+          para llegar con una idea clara de qué vas a construir y por qué.
+        </p>
+      </header>
+
+      <h2 class="section-title">El método en 6 pasos</h2>
+      <div class="steps">
+        <article class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Entiende el objetivo</h3>
+            <p>
+              Antes de programar nada, describe con tus propias palabras qué
+              debe hacer la app y para quién. Si no puedes explicarlo en una
+              frase, todavía no está claro.
+            </p>
+            <p class="prompt">
+              Pregúntate: ¿qué va a ver el usuario en pantalla cuando la app
+              esté terminada?
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Identifica el estado</h3>
+            <p>
+              El estado es todo dato que cambia mientras se usa la app: un
+              número, una lista, un texto, un booleano de "activo/pausado".
+              Antes de escribir HTML o CSS, anota qué datos vas a necesitar
+              guardar.
+            </p>
+            <p class="prompt">
+              Pregúntate: ¿qué cambia con el tiempo o con las acciones del
+              usuario, y qué se queda fijo?
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Divide el problema en piezas pequeñas</h3>
+            <p>
+              No intentes construir la app entera de una vez. Separa: el HTML
+              mínimo, un solo evento, una sola función. Cada pieza debe
+              poder probarse por separado.
+            </p>
+            <p class="prompt">
+              Pregúntate: si solo pudiera hacer una cosa hoy, ¿cuál sería la
+              más pequeña que ya se pueda ver funcionando?
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>Escribe pseudocódigo antes de código real</h3>
+            <p>
+              En español, paso a paso, sin sintaxis: "cuando el usuario haga
+              clic, leer el valor del input, comprobar que no esté vacío,
+              añadirlo a la lista". El código real solo traduce esto.
+            </p>
+            <p class="prompt">
+              Pregúntate: ¿podría explicarle estos pasos a alguien que no
+              sabe programar?
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <h3>Identifica los eventos que disparan cambios</h3>
+            <p>
+              Casi toda interacción parte de un evento: un clic, una tecla
+              pulsada (input), un envío de formulario, o el paso del tiempo
+              (setInterval). Decide cuál es el disparador antes de escribir
+              la función que reacciona a él.
+            </p>
+            <p class="prompt">
+              Pregúntate: ¿qué acción concreta del usuario (o del reloj)
+              debe iniciar cada cambio?
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-num">6</div>
+          <div class="step-body">
+            <h3>Construye, prueba los casos límite y refactoriza</h3>
+            <p>
+              Implementa el camino feliz primero. Después pruébalo a
+              propósito con datos vacíos, con 0, con números negativos o con
+              texto raro. Solo cuando funciona, mejora el nombre de las
+              variables y limpia el código repetido.
+            </p>
+            <p class="prompt">
+              Pregúntate: ¿qué pasa si el usuario no hace lo que yo esperaba
+              que hiciera?
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <h2 class="section-title">Aplícalo a cada proyecto</h2>
+      <p class="subtitle" style="margin-bottom: 16px">
+        Antes de abrir el editor, respóndete estas preguntas para cada
+        proyecto. No es un examen: es la fase de planificación.
+      </p>
+      <div id="topicQuestions"></div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/pensar-data.js"></script>
+    <script src="js/pensar.js"></script>
+  </body>
+</html>

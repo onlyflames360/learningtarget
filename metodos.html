@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Métodos JS vs Python</title>
+    <link rel="stylesheet" href="css/metodos.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="topnav">
+        <a class="site-title" href="index.html">Tarjetas de aprender</a>
+        <div class="nav-links">
+          <a href="metodos.html" class="active">Métodos</a>
+          <a href="ejercicios.html">Ejercicios</a>
+          <a href="constructor.html">Construye código</a>
+          <a href="pensar.html">Cómo pensar</a>
+          <a href="entrenador.html">Entrenador</a>
+          <a href="carpetas.html">Carpetas</a>
+          <a href="proyectos.html">Proyectos</a>
+          <button id="themeToggle" type="button">Modo oscuro</button>
+        </div>
+      </nav>
+
+      <p class="eyebrow">Modo aprendizaje · Repaso rápido</p>
+      <h1>Los métodos y conceptos que se usan a diario</h1>
+      <p class="subtitle">
+        JavaScript y Python, uno al lado del otro: desde texto y arrays
+        hasta promesas, fetch y CRUD completo. Mira el método, elige a, b o
+        c, y comprueba la respuesta con un ejemplo real. Lo que falles
+        vuelve a salir al final de la ronda.
+      </p>
+
+      <div class="pillrow filters" id="langFilters"></div>
+      <div class="pillrow filters" id="catFilters"></div>
+
+      <div class="statsrow">
+        <div class="stat-group">
+          <span
+            ><span class="stat-label">ACIERTOS</span
+            ><span class="stat-value" id="statAciertos">0/0</span></span
+          >
+          <span
+            ><span class="stat-label">RACHA</span
+            ><span class="stat-value" id="statRacha">0</span></span
+          >
+        </div>
+        <div class="stat-value" id="statPos">0 DE 0</div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <div id="cardArea"></div>
+
+      <p class="next-hint" id="keyHint">
+        Teclado: <kbd>a</kbd> · <kbd>b</kbd> · <kbd>c</kbd> para responder,
+        <kbd>Enter</kbd> para la siguiente.
+      </p>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/metodos.js"></script>
+  </body>
+</html>
