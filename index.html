@@ -5,26 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tarjetas de aprender</title>
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/nav.css" />
   </head>
   <body>
-    <nav class="sitenav">
-      <div class="nav-links">
-        <a href="index.html" class="active">Tarjetas</a>
-        <a href="metodos.html">Métodos</a>
-        <a href="buscar.html">Buscador</a>
-        <a href="identificar.html">Identificar</a>
-        <a href="practicas.html">Buenas prácticas</a>
-        <a href="typescript.html">TypeScript</a>
-        <a href="ejercicios.html">Ejercicios</a>
-        <a href="constructor.html">Construye código</a>
-        <a href="juego.html">Juego</a>
-        <a href="pensar.html">Cómo pensar</a>
-        <a href="entrenador.html">Entrenador</a>
-        <a href="carpetas.html">Carpetas</a>
-        <a href="proyectos.html">Proyectos</a>
-      </div>
-      <button id="themeToggle" type="button">Modo oscuro</button>
-    </nav>
+    <nav class="sitenav" id="sitenav"></nav>
     <main class="app">
       <header class="topbar">
         <div>
@@ -89,6 +73,8 @@
       <h2 class="deck-title">Cómo pensar (de <a href="pensar.html">Cómo pensar</a>)</h2>
       <div class="mini-grid" id="gridPensar"></div>
     </section>
+
+    <script src="js/nav.js"></script>
 
     <script src="js/theme.js"></script>
     <script src="js/index-data.js"></script>

@@ -71,6 +71,11 @@ Cada página tiene su CSS en `css/<pagina>.css` y su lógica en
 `js/*-data.js`). El modo oscuro es compartido por todas las páginas desde
 `js/theme.js`.
 
+La navegación también es compartida: `js/nav.js` contiene la lista de
+secciones y la genera en todas las páginas (añadir una sección nueva es
+editar solo esa lista), y `css/nav.css` la hace responsive — en móvil se
+convierte en un menú hamburguesa desplegable con la barra fija arriba.
+
 ## Cómo usarla localmente
 
 1. Abre la carpeta del proyecto.

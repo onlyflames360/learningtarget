@@ -11,6 +11,9 @@
   --ink: #f8fafc;
   --muted: #a5b4fc;
   --panel: rgba(30, 27, 75, 0.72);
+  --bg: #171334;                      /* fondo de la barra fija */
+  --primary: #22d3ee;                 /* la barra compartida usa --primary */
+  --borde-nav: rgba(167, 139, 250, 0.35);
   --panel-solid: #1e1b4b;
   --border: rgba(167, 139, 250, 0.35);
 }
@@ -39,7 +42,7 @@ body {
 body {
   min-height: 100vh;
   padding: 22px;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip en vez de hidden: no rompe la barra fija */
 }
 
 /* Estrellas de fondo */

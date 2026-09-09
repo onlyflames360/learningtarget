@@ -106,7 +106,7 @@ body {
 body {
   min-height: 100vh;
   display: grid;
-  place-items: center;
+  place-items: start center; /* start en vertical: permite que la barra quede fija */
   padding: 24px;
 }
 

@@ -5,27 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Proyectos JavaScript</title>
     <link rel="stylesheet" href="css/proyectos.css" />
+    <link rel="stylesheet" href="css/nav.css" />
   </head>
   <body>
     <div class="wrap">
-      <nav class="sitenav">
-        <div class="nav-links">
-          <a href="index.html">Tarjetas</a>
-          <a href="metodos.html">Métodos</a>
-          <a href="buscar.html">Buscador</a>
-          <a href="identificar.html">Identificar</a>
-          <a href="practicas.html">Buenas prácticas</a>
-          <a href="typescript.html">TypeScript</a>
-          <a href="ejercicios.html">Ejercicios</a>
-          <a href="constructor.html">Construye código</a>
-          <a href="juego.html">Juego</a>
-          <a href="pensar.html">Cómo pensar</a>
-          <a href="entrenador.html">Entrenador</a>
-          <a href="carpetas.html">Carpetas</a>
-          <a href="proyectos.html" class="active">Proyectos</a>
-        </div>
-        <button id="themeToggle" type="button">Modo oscuro</button>
-      </nav>
+      <nav class="sitenav" id="sitenav"></nav>
       <header class="topbar">
         <div>
           <p class="eyebrow">Ruta de aprendizaje</p>
@@ -50,6 +34,8 @@
 
       <div id="themes"></div>
     </div>
+
+    <script src="js/nav.js"></script>
 
     <script src="js/theme.js"></script>
     <script src="js/proyectos-data.js"></script>

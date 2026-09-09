@@ -5,27 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Métodos JS vs Python</title>
     <link rel="stylesheet" href="css/metodos.css" />
+    <link rel="stylesheet" href="css/nav.css" />
   </head>
   <body>
     <div class="wrap">
-      <nav class="topnav">
-        <a class="site-title" href="index.html">Tarjetas de aprender</a>
-        <div class="nav-links">
-          <a href="metodos.html" class="active">Métodos</a>
-          <a href="buscar.html">Buscador</a>
-          <a href="identificar.html">Identificar</a>
-          <a href="practicas.html">Buenas prácticas</a>
-          <a href="typescript.html">TypeScript</a>
-          <a href="ejercicios.html">Ejercicios</a>
-          <a href="constructor.html">Construye código</a>
-          <a href="juego.html">Juego</a>
-          <a href="pensar.html">Cómo pensar</a>
-          <a href="entrenador.html">Entrenador</a>
-          <a href="carpetas.html">Carpetas</a>
-          <a href="proyectos.html">Proyectos</a>
-          <button id="themeToggle" type="button">Modo oscuro</button>
-        </div>
-      </nav>
+      <nav class="sitenav" id="sitenav"></nav>
 
       <p class="eyebrow">Modo aprendizaje · Repaso rápido</p>
       <h1>Los métodos y conceptos que se usan a diario</h1>
@@ -70,6 +54,8 @@
         <pre class="hint-code" id="hintCode"></pre>
       </div>
     </div>
+
+    <script src="js/nav.js"></script>
 
     <script src="js/theme.js"></script>
     <script src="js/metodos-data.js"></script>

@@ -5,27 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Entrenador de descomposición</title>
     <link rel="stylesheet" href="css/entrenador.css" />
+    <link rel="stylesheet" href="css/nav.css" />
   </head>
   <body>
     <div class="wrap">
-      <nav class="sitenav">
-        <div class="nav-links">
-          <a href="index.html">Tarjetas</a>
-          <a href="metodos.html">Métodos</a>
-          <a href="buscar.html">Buscador</a>
-          <a href="identificar.html">Identificar</a>
-          <a href="practicas.html">Buenas prácticas</a>
-          <a href="typescript.html">TypeScript</a>
-          <a href="ejercicios.html">Ejercicios</a>
-          <a href="constructor.html">Construye código</a>
-          <a href="juego.html">Juego</a>
-          <a href="pensar.html">Cómo pensar</a>
-          <a href="entrenador.html" class="active">Entrenador</a>
-          <a href="carpetas.html">Carpetas</a>
-          <a href="proyectos.html">Proyectos</a>
-        </div>
-        <button id="themeToggle" type="button">Modo oscuro</button>
-      </nav>
+      <nav class="sitenav" id="sitenav"></nav>
 
       <header class="topbar">
         <p class="eyebrow">Entrenamiento de pensamiento computacional</p>
@@ -97,6 +81,8 @@
         </div>
       </div>
     </div>
+
+    <script src="js/nav.js"></script>
 
     <script src="js/theme.js"></script>
     <script src="js/entrenador-data.js"></script>
