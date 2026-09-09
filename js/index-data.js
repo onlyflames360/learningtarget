@@ -1,7 +1,8 @@
 // Tarjetas de repaso: primero los métodos y conceptos de metodos.html (generado
-// automáticamente a partir de js/metodos.js para no duplicar el contenido a mano),
+// automáticamente a partir de js/metodos-data.js para no duplicar el contenido),
 // después el método de pensamiento de pensar.html.
-// Cada tarjeta lleva `lang` para poder filtrar entre JavaScript, Python y Cómo pensar.
+// Cada tarjeta lleva `lang` para poder filtrar entre JavaScript, Python,
+// TypeScript y Cómo pensar.
 const cardsMetodos = [
   { lang: "JavaScript", question: ".slice()  ·  JavaScript · Texto", answer: "Extrae una parte del string entre dos posiciones. Ej: const fruta = \"manzana\"; const trozo = fruta.slice(0, 3); console.log(trozo); // → \"man\"" },
   { lang: "JavaScript", question: ".split()  ·  JavaScript · Texto", answer: "Divide un string en un array de trozos según un separador. Ej: const csv = \"rojo,verde,azul\"; const colores = csv.split(\",\"); console.log(colores); // → [\"rojo\", \"verde\", \"azul\"]" },
@@ -158,11 +159,33 @@ const cardsMetodos = [
   { lang: "JavaScript", question: "import { }  ·  JavaScript · Módulos ES6", answer: "Trae una exportación concreta (con nombre) de otro archivo para poder usarla. Ej: import { sumar } from \"./operaciones.js\"; console.log(sumar(2, 3)); // → 5" },
   { lang: "JavaScript", question: "import ... as  ·  JavaScript · Módulos ES6", answer: "Permite importar algo con un nombre distinto al que tiene en el archivo original. Ej: import { sumar as add } from \"./operaciones.js\"; console.log(add(2, 3)); // → 5" },
   { lang: "JavaScript", question: "import * as  ·  JavaScript · Módulos ES6", answer: "Importa todas las exportaciones de un archivo agrupadas en un solo objeto. Ej: import * as operaciones from \"./operaciones.js\"; console.log(operaciones.sumar(2, 3));" },
-  { lang: "JavaScript", question: "Anotación de tipo  ·  JavaScript · TypeScript básico", answer: "Indica explícitamente qué tipo de dato puede tener una variable o parámetro. Ej: let edad: number = 25; // edad = 'veinticinco'; // Error: no es un número" },
-  { lang: "JavaScript", question: "interface  ·  JavaScript · TypeScript básico", answer: "Define la forma (propiedades y tipos) que debe tener un objeto. Ej: interface Persona {   nombre: string;   edad: number; } const ana: Persona = { nombre: 'Ana', edad: 30 };" },
-  { lang: "JavaScript", question: "Propiedad opcional (?)  ·  JavaScript · TypeScript básico", answer: "Marca una propiedad o parámetro como opcional: puede no estar presente. Ej: interface Persona {   nombre: string;   apodo?: string; } const ana: Persona = { nombre: 'Ana' }; // válido sin apodo" },
-  { lang: "JavaScript", question: "any  ·  JavaScript · TypeScript básico", answer: "Tipo comodín que desactiva la comprobación de tipos para ese valor; se recomienda evitarlo. Ej: let dato: any = 'texto'; dato = 42; // válido, any desactiva la comprobación" },
-  { lang: "JavaScript", question: "type  ·  JavaScript · TypeScript básico", answer: "Crea un alias con nombre propio para un tipo, útil para tipos complejos o reutilizados. Ej: type ID = string | number; const id1: ID = 'abc123'; const id2: ID = 42;" },
+  { lang: "TypeScript", question: "Anotación de tipo  ·  TypeScript", answer: "Indica explícitamente qué tipo de dato puede tener una variable o parámetro. Ej: let edad: number = 25; let nombre: string = \"Ana\"; let activo: boolean = true;  edad = \"treinta\"; // Error: Type 'string' is not assignable to type 'number'" },
+  { lang: "TypeScript", question: "Inferencia de tipos  ·  TypeScript", answer: "TypeScript deduce el tipo del valor asignado, así que no hace falta anotarlo todo. Ej: let nombre: string = \"Ana\"; // redundante let nombre = \"Ana\";         // ya sabe que es string  const precios = [10, 20];   // inferido: number[]" },
+  { lang: "TypeScript", question: "Tipar parámetros  ·  TypeScript", answer: "Los parámetros de una función sí hay que anotarlos: es lo que TS no puede adivinar. Ej: function saludar(nombre: string) {   return \"Hola \" + nombre; // retorno inferido: string }" },
+  { lang: "TypeScript", question: "Tipo de retorno / void  ·  TypeScript", answer: "Se anota tras los paréntesis; void significa que la función no devuelve nada. Ej: function registrar(mensaje: string): void {   console.log(mensaje); }  function sumar(a: number, b: number): number {   return a + b; }" },
+  { lang: "TypeScript", question: "interface  ·  TypeScript", answer: "Define la forma (propiedades y tipos) que debe tener un objeto. Ej: interface Persona {   nombre: string;   edad: number; }  const ana: Persona = { nombre: \"Ana\", edad: 30 };" },
+  { lang: "TypeScript", question: "Propiedad opcional (?)  ·  TypeScript", answer: "Marca una propiedad o parámetro como opcional: puede no estar presente. Ej: interface Persona {   nombre: string;   apodo?: string; }  const ana: Persona = { nombre: \"Ana\" }; // valido sin apodo" },
+  { lang: "TypeScript", question: "Arrays tipados (T[])  ·  TypeScript", answer: "Declara una lista en la que todos los elementos son del mismo tipo. Ej: const precios: number[] = [10, 20]; const nombres: string[] = [\"Ana\", \"Luis\"]; const usuarios: Persona[] = [{ nombre: \"Ana\", edad: 30 }];" },
+  { lang: "TypeScript", question: "Uniones (string | number)  ·  TypeScript", answer: "Permite que un valor sea de varios tipos posibles. Ej: type Id = string | number;  let id: Id = \"abc123\"; id = 42;    // tambien vale id = true;  // Error: no esta en la union" },
+  { lang: "TypeScript", question: "Narrowing con typeof  ·  TypeScript", answer: "Al comprobar el tipo, TS descarta opciones y te deja usar solo lo válido en cada rama. Ej: function formatear(id: string | number) {   if (typeof id === \"string\") {     return id.toUpperCase(); // aqui TS sabe que es string   }   return id.toFixed(2);      // aqui solo puede ser number }" },
+  { lang: "TypeScript", question: "Tipos literales  ·  TypeScript", answer: "Limita el valor a una lista exacta de opciones concretas. Ej: type Estado = \"pendiente\" | \"enviado\" | \"entregado\";  let estado: Estado = \"enviado\";  // valido estado = \"enviadoo\";             // Error: el typo se detecta al escribirlo" },
+  { lang: "TypeScript", question: "type (alias)  ·  TypeScript", answer: "Crea un alias con nombre propio para un tipo, útil para uniones o tipos reutilizados. Ej: type Id = string | number; type Callback = (n: number) => void; type Punto = { x: number; y: number };" },
+  { lang: "TypeScript", question: "any  ·  TypeScript", answer: "Tipo comodín que desactiva la comprobación de tipos; conviene evitarlo. Ej: let dato: any = \"texto\"; dato = 42; dato.metodoQueNoExiste(); // compila, pero revienta al ejecutarse" },
+  { lang: "TypeScript", question: "unknown  ·  TypeScript", answer: "Como any pero seguro: obliga a comprobar el tipo antes de usar el valor. Ej: let dato: unknown = await res.json();  dato.toUpperCase();                       // Error: hay que comprobar antes if (typeof dato === \"string\") dato.toUpperCase(); // correcto" },
+  { lang: "TypeScript", question: "Genéricos <T>  ·  TypeScript", answer: "Un hueco que se rellena en cada llamada, conservando el tipo que entra. Ej: function primero<T>(lista: T[]): T {   return lista[0]; }  const n = primero([1, 2, 3]);   // n es number const s = primero([\"a\", \"b\"]); // s es string" },
+  { lang: "TypeScript", question: "Tipar el DOM  ·  TypeScript", answer: "Se concreta qué elemento esperas, y hay que contemplar que el selector devuelva null. Ej: const input = document.querySelector<HTMLInputElement>(\"#email\");  if (input) {   console.log(input.value); // comprobado el null }" },
+  { lang: "TypeScript", question: "Promise<T> y async  ·  TypeScript", answer: "El tipo dentro de Promise es lo que se obtiene al hacer await. Ej: async function cargarUsuarios(): Promise<Persona[]> {   const res = await fetch(\"/api/usuarios\");   return res.json(); }  const usuarios = await cargarUsuarios(); // Persona[]" },
+  { lang: "TypeScript", question: "Tipar callbacks  ·  TypeScript", answer: "Se describe qué recibe y qué devuelve la función que se pasa como parámetro. Ej: function repetir(veces: number, accion: (i: number) => void) {   for (let i = 0; i < veces; i++) accion(i); }  repetir(3, (i) => console.log(i)); // i es number, sin anotarlo" },
+  { lang: "TypeScript", question: "readonly  ·  TypeScript", answer: "Impide reasignar esa propiedad después de crear el objeto. Ej: interface Config {   readonly apiUrl: string; }  config.apiUrl = \"otra\"; // Error: Cannot assign to 'apiUrl'" },
+  { lang: "TypeScript", question: "Partial<T>  ·  TypeScript", answer: "Crea una versión del tipo con todas sus propiedades opcionales. Ej: interface Usuario { id: number; nombre: string }  function actualizar(id: number, cambios: Partial<Usuario>) { } actualizar(1, { nombre: \"Ana\" }); // no hace falta pasar todo" },
+  { lang: "TypeScript", question: "Pick y Omit  ·  TypeScript", answer: "Derivan un tipo nuevo eligiendo o descartando propiedades de otro. Ej: type SoloNombre = Pick<Usuario, \"nombre\">;  // solo esa propiedad type SinId = Omit<Usuario, \"id\">;           // todas menos esa" },
+  { lang: "TypeScript", question: "Record<K, V>  ·  TypeScript", answer: "Describe un objeto usado como diccionario: claves de un tipo, valores de otro. Ej: const porId: Record<number, Usuario> = {   1: { id: 1, nombre: \"Ana\" }, };" },
+  { lang: "TypeScript", question: "extends (interfaces)  ·  TypeScript", answer: "Una interface hereda las propiedades de otra y añade las suyas. Ej: interface Persona { nombre: string } interface Empleado extends Persona {   puesto: string; } // Empleado tiene nombre Y puesto" },
+  { lang: "TypeScript", question: "as const  ·  TypeScript", answer: "Congela los valores como literales de solo lectura, útil para derivar tipos de un array real. Ej: const ESTADOS = [\"pendiente\", \"enviado\"] as const; type Estado = (typeof ESTADOS)[number]; // resultado: \"pendiente\" | \"enviado\", derivado de la lista real" },
+  { lang: "TypeScript", question: "Aserción (as)  ·  TypeScript", answer: "Le dices a TS que confíe en ti sobre el tipo; si te equivocas, no hay red. Ej: const input = document.getElementById(\"email\") as HTMLInputElement;  // Ojo: no convierte nada, solo silencia la comprobacion" },
+  { lang: "TypeScript", question: "Encadenamiento opcional (?.)  ·  TypeScript", answer: "Accede a la propiedad solo si el valor existe, evitando el error de null/undefined. Ej: const usuario = usuarios.find(u => u.id === 1);  console.log(usuario.nombre);  // Error: possibly undefined console.log(usuario?.nombre); // correcto" },
+  { lang: "TypeScript", question: "Tuplas  ·  TypeScript", answer: "Un array de longitud fija donde cada posición tiene su propio tipo. Ej: const punto: [number, number] = [40.4, -3.7]; const par: [string, boolean] = [\"activo\", true];" },
+  { lang: "TypeScript", question: "strict en tsconfig  ·  TypeScript", answer: "Activa las comprobaciones estrictas: sin él TypeScript apenas protege. Ej: // tsconfig.json {   \"compilerOptions\": {     \"strict\": true   } }" },
 ];
 
 const cardsPensar = [
@@ -204,6 +227,6 @@ const cardsPensar = [
   },
 ];
 
-const FILTROS_LANG = ["Todos", "JavaScript", "Python", "Cómo pensar"];
+const FILTROS_LANG = ["Todos", "JavaScript", "TypeScript", "Python", "Cómo pensar"];
 
 const cards = cardsMetodos.concat(cardsPensar);

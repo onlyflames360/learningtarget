@@ -25,7 +25,7 @@ function shuffle(arr) {
 
 function filteredPool() {
   return DATA.filter((item) => {
-    const langOk = langFilter === "Los dos" || item.lang === langFilter;
+    const langOk = langFilter === "Todos" || item.lang === langFilter;
     const catOk = catFilter === "Todas" || item.cat === catFilter;
     return langOk && catOk;
   });

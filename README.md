@@ -3,10 +3,10 @@
 Sitio estático de estudio de JavaScript, dividido en 13 páginas:
 
 - `index.html` — tarjetas de repaso (flip pregunta/respuesta) generadas a
-  partir de los 160+ métodos/conceptos de `metodos.html` y los 6 pasos de
-  `pensar.html`. Filtros: Todos / JavaScript / Python / Cómo pensar, más una
+  partir de los 182 métodos/conceptos de `metodos.html` y los 6 pasos de
+  `pensar.html`. Filtros: Todos / JavaScript / TypeScript / Python / Cómo pensar, más una
   cuadrícula debajo para saltar a cualquier tarjeta.
-- `metodos.html` — quiz rápido a/b/c con más de 160 métodos y conceptos de JS
+- `metodos.html` — quiz rápido a/b/c con 182 métodos y conceptos de JS, TypeScript
   y Python, agrupados por categoría y ordenados por frecuencia de uso real:
   Variables, Arrays y objetos, Bucles, Funciones, Clases y constructores, DOM,
   Eventos, Texto, Conversión, Matemáticas, Promesas, Fetch y CRUD completo

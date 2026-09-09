@@ -9,6 +9,22 @@
   --accent: #d7b98a;
   --success: #3d7a4f;
   --shadow: 0 18px 50px rgba(56, 35, 18, 0.14);
+  /* Superficies: se redefinen en oscuro para no dejar texto claro sobre fondo claro */
+  --superficie-app: rgba(255, 255, 255, 0.38);
+  --superficie-pastilla: rgba(255, 255, 255, 0.55);
+  --btn-secundario-bg: #efe3d1;
+  --btn-secundario-ink: var(--primary-dark);
+  --cara-frente: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(250, 242, 232, 0.92)
+  );
+  --cara-dorso: linear-gradient(
+    145deg,
+    rgba(255, 250, 245, 1),
+    rgba(240, 226, 205, 0.96)
+  );
+  --borde-suave: rgba(141, 90, 43, 0.2);
 }
 
 :root[data-theme="dark"] {
@@ -22,6 +38,13 @@
   --accent: #4a3c2c;
   --success: #6bbf82;
   --shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
+  --superficie-app: rgba(255, 255, 255, 0.04);
+  --superficie-pastilla: rgba(255, 255, 255, 0.07);
+  --btn-secundario-bg: #3a352f;
+  --btn-secundario-ink: #f0d9bd;
+  --cara-frente: linear-gradient(145deg, #33302b, #2a2723);
+  --cara-dorso: linear-gradient(145deg, #3a352e, #2f2b26);
+  --borde-suave: rgba(224, 140, 70, 0.28);
 }
 
 * {
@@ -89,9 +112,9 @@ body {
 
 .app {
   width: min(760px, 100%);
-  background: rgba(255, 255, 255, 0.38);
+  background: var(--superficie-app);
   backdrop-filter: blur(6px);
-  border: 1px solid rgba(141, 90, 43, 0.14);
+  border: 1px solid var(--borde-suave);
   border-radius: 28px;
   box-shadow: var(--shadow);
   padding: 28px;
@@ -149,8 +172,8 @@ h1 {
 }
 
 .btn.secondary {
-  background: #efe3d1;
-  color: var(--primary-dark);
+  background: var(--btn-secundario-bg);
+  color: var(--btn-secundario-ink);
 }
 
 .btn.ghost {
@@ -167,8 +190,8 @@ h1 {
 }
 
 .lang-pill {
-  border: 1px solid rgba(141, 90, 43, 0.25);
-  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--borde-suave);
+  background: var(--superficie-pastilla);
   color: var(--muted);
   padding: 8px 14px;
   border-radius: 999px;
@@ -198,10 +221,10 @@ h1 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.55);
+  background: var(--superficie-pastilla);
   padding: 10px 14px;
   border-radius: 999px;
-  border: 1px solid rgba(141, 90, 43, 0.15);
+  border: 1px solid var(--borde-suave);
 }
 
 .progress {
@@ -239,22 +262,14 @@ h1 {
   padding: 24px 22px 20px;
   border-radius: 26px;
   backface-visibility: hidden;
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.9),
-    rgba(250, 242, 232, 0.92)
-  );
-  border: 1px solid rgba(141, 90, 43, 0.2);
+  background: var(--cara-frente);
+  border: 1px solid var(--borde-suave);
   box-shadow: 0 12px 30px rgba(72, 44, 22, 0.12);
 }
 
 .card-back {
   transform: rotateY(180deg);
-  background: linear-gradient(
-    145deg,
-    rgba(255, 250, 245, 1),
-    rgba(240, 226, 205, 0.96)
-  );
+  background: var(--cara-dorso);
 }
 
 .tag {

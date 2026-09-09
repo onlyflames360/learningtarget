@@ -10,6 +10,14 @@
   --success: #3d7a4f;
   --danger: #a4432c;
   --shadow: 0 18px 50px rgba(56, 35, 18, 0.14);
+  /* Superficies que deben cambiar con el tema */
+  --superficie-fila: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(250, 242, 232, 0.92)
+  );
+  --btn-suave-bg: #efe3d1;
+  --btn-suave-ink: var(--primary-dark);
 }
 
 :root[data-theme="dark"] {
@@ -24,6 +32,9 @@
   --success: #6bbf82;
   --danger: #e07a5f;
   --shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
+  --superficie-fila: linear-gradient(145deg, #302c27, #282521);
+  --btn-suave-bg: #3a352f;
+  --btn-suave-ink: #f0d9bd;
 }
 
 * {
@@ -130,8 +141,8 @@ h1 {
   gap: 6px;
   padding: 10px 16px;
   border-radius: 999px;
-  background: #efe3d1;
-  color: var(--primary-dark);
+  background: var(--btn-suave-bg);
+  color: var(--btn-suave-ink);
   text-decoration: none;
   font-weight: 700;
   font-size: 0.9rem;
@@ -244,11 +255,7 @@ h1 {
 .proj-summary {
   width: 100%;
   text-align: left;
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.9),
-    rgba(250, 242, 232, 0.92)
-  );
+  background: var(--superficie-fila);
   border: none;
   cursor: pointer;
   padding: 18px 20px;
