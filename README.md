@@ -1,6 +1,6 @@
 # Tarjetas de aprender
 
-Sitio estático de estudio de JavaScript, dividido en 8 páginas:
+Sitio estático de estudio de JavaScript, dividido en 13 páginas:
 
 - `index.html` — tarjetas de repaso (flip pregunta/respuesta) generadas a
   partir de los 160+ métodos/conceptos de `metodos.html` y los 6 pasos de
