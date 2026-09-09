@@ -212,6 +212,154 @@ pre {
   padding-top: 10px;
 }
 
+/* ---------- Los tres símbolos ---------- */
+.simbolos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 14px;
+}
+
+.simbolo {
+  background: var(--panel);
+  border: 1px solid rgba(141, 90, 43, 0.16);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+.simbolo-cabecera {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 2px solid var(--primary);
+}
+
+.simbolo-signo {
+  flex-shrink: 0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: var(--primary);
+  background: var(--panel-alt);
+  border-radius: 12px;
+  padding: 6px 14px;
+  line-height: 1.2;
+}
+
+.simbolo-nombre {
+  display: block;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.simbolo-pregunta {
+  display: block;
+  color: var(--primary-dark);
+  font-size: 0.88rem;
+  font-style: italic;
+  margin-top: 3px;
+}
+
+.simbolo-usos {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  flex: 1;
+}
+
+.uso-que {
+  display: block;
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-bottom: 5px;
+}
+
+.uso-ej {
+  display: block;
+  background: #2b2420;
+  color: #f3e7d5;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 0.79rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.uso-nota {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin-top: 5px;
+}
+
+.simbolo-truco {
+  margin: 0;
+  background: var(--success-soft);
+  border-left: 4px solid var(--success);
+  border-radius: 9px;
+  padding: 12px 14px;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.sub-title {
+  font-size: 0.95rem;
+  margin: 26px 0 12px;
+  color: var(--primary-dark);
+}
+
+.extras {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.extra {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--panel);
+  border: 1px solid rgba(141, 90, 43, 0.16);
+  border-radius: 12px;
+  padding: 13px 15px;
+}
+
+.extra-signo {
+  flex-shrink: 0;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 800;
+  padding: 5px 10px;
+  border-radius: 7px;
+  font-size: 0.85rem;
+}
+
+.extra-significa {
+  margin: 0 0 6px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.extra-ej {
+  display: block;
+  background: var(--panel-alt);
+  padding: 6px 9px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
 /* ---------- Familias ---------- */
 .familias {
   display: flex;

@@ -85,6 +85,135 @@ const FAMILIAS = [
   },
 ];
 
+// Los tres símbolos: una pregunta mental para cada uno, y cómo distinguir
+// sus distintos usos cuando el mismo símbolo significa cosas diferentes.
+const SIMBOLOS = [
+  {
+    simbolo: "( )",
+    nombre: "Paréntesis",
+    emoji: "▶️",
+    pregunta: "¿Voy a ejecutar algo?",
+    usos: [
+      {
+        que: "Ejecutar una función",
+        ej: "saludar();",
+        nota: "Sin los paréntesis no se ejecuta: obtienes la función en sí, no su resultado.",
+      },
+      {
+        que: "Declarar qué recibe una función",
+        ej: "function saludar(nombre) { }",
+        nota: "Aquí no se ejecuta nada: se está diciendo qué datos va a aceptar.",
+      },
+      {
+        que: "Agrupar para cambiar el orden de una operación",
+        ej: "(2 + 3) * 4  // 20, no 14",
+        nota: "Igual que en matemáticas: lo de dentro se resuelve primero.",
+      },
+      {
+        que: "Envolver la condición de un if o un bucle",
+        ej: "if (edad >= 18) { }\nwhile (quedan > 0) { }",
+        nota: "Delimitan la pregunta que se está haciendo.",
+      },
+    ],
+    truco:
+      "Mira qué hay JUSTO DELANTE. Un nombre → se está ejecutando. La palabra function → declara lo que recibe. if / while / for → envuelven una condición. Nada → están agrupando una operación.",
+  },
+  {
+    simbolo: "[ ]",
+    nombre: "Corchetes",
+    emoji: "🧺",
+    pregunta: "¿Voy a acceder o guardar elementos?",
+    usos: [
+      {
+        que: "Crear una lista",
+        ej: 'const frutas = ["manzana", "pera"];',
+        nota: "Vacíos o con elementos dentro: estás definiendo una colección.",
+      },
+      {
+        que: "Acceder a una posición",
+        ej: "frutas[0]  // primera fruta",
+        nota: "Los índices empiezan en 0, no en 1.",
+      },
+      {
+        que: "Acceder a una propiedad cuyo nombre es variable",
+        ej: 'const campo = "edad";\npersona[campo]  // equivale a persona.edad',
+        nota: "Es la única forma cuando el nombre no lo sabes hasta que se ejecuta.",
+      },
+      {
+        que: "Sacar valores de una lista a variables",
+        ej: "const [primero, segundo] = coordenadas;",
+        nota: "Desestructuración: los corchetes indican que el origen es un array.",
+      },
+    ],
+    truco:
+      "Si van DESPUÉS de un nombre (frutas[0]) estás accediendo. Si van después de un = o sueltos, estás creando o repartiendo una colección.",
+  },
+  {
+    simbolo: "{ }",
+    nombre: "Llaves",
+    emoji: "🗂️",
+    pregunta: "¿Voy a agrupar o definir cosas?",
+    usos: [
+      {
+        que: "Delimitar un bloque de código",
+        ej: "if (activo) {\n  encender();\n}",
+        nota: "Marcan dónde empieza y acaba lo que se ejecuta en ese caso.",
+      },
+      {
+        que: "Definir un objeto",
+        ej: 'const persona = { nombre: "Ana", edad: 30 };',
+        nota: "Dentro hay pares clave: valor separados por comas.",
+      },
+      {
+        que: "Sacar propiedades de un objeto a variables",
+        ej: "const { nombre, edad } = persona;",
+        nota: "Desestructuración: las llaves indican que el origen es un objeto.",
+      },
+      {
+        que: "Elegir qué importar de otro archivo",
+        ej: 'import { sumar } from "./operaciones.js";',
+        nota: "Sin llaves sería la exportación por defecto del archivo.",
+      },
+    ],
+    truco:
+      "La duda típica es bloque u objeto. Si van después de un = o dentro de un ( ), es un OBJETO. Si van después de un if, for, function o =>, es un BLOQUE de código.",
+  },
+];
+
+// Otros símbolos que aparecen constantemente
+const SIMBOLOS_EXTRA = [
+  {
+    simbolo: "=>",
+    significa: "Arrow function: una función escrita en corto.",
+    ej: "const doble = (n) => n * 2;",
+  },
+  {
+    simbolo: "${ }",
+    significa: "Meter una variable dentro de un texto. Solo funciona con comillas invertidas ` `.",
+    ej: "`Hola ${nombre}, tienes ${edad} años`",
+  },
+  {
+    simbolo: "...",
+    significa: "Expandir una lista, o recoger lo que sobra en una nueva.",
+    ej: "const copia = [...original];\nfunction sumar(...numeros) { }",
+  },
+  {
+    simbolo: "?.",
+    significa: "Accede solo si existe; si no, devuelve undefined en vez de romperse.",
+    ej: "usuario?.direccion?.calle",
+  },
+  {
+    simbolo: ":",
+    significa: "Asigna dentro de un objeto (o el tipo, en TypeScript). Fuera de ahí se usa =.",
+    ej: 'const p = { nombre: "Ana" };  // dentro: dos puntos\nlet nombre = "Ana";           // fuera: igual',
+  },
+  {
+    simbolo: "` `",
+    significa: "Comillas invertidas: texto que admite variables dentro y saltos de línea.",
+    ej: "`Total: ${precio} €`",
+  },
+];
+
 // Consejos útiles: las señales que permiten reconocer al vuelo, sin memorizar
 const SENALES = [
   {
@@ -294,5 +423,57 @@ const RETOS_IDENTIFICAR = [
     correcta: 0,
     explicacion:
       "Una NodeList se parece a un array pero no lo es: tiene forEach, pero no map ni filter. Si los necesitas, conviértela primero con [...items].",
+  },
+  {
+    codigo: 'const persona = { nombre: "Ana" };\n\nif (persona.nombre) {\n  console.log("Tiene nombre");\n}',
+    marcado: "llaves",
+    pregunta: "Las llaves aparecen dos veces. ¿Significan lo mismo?",
+    opciones: [
+      "No: las primeras definen un objeto (van tras un =) y las segundas delimitan un bloque (van tras un if)",
+      "Sí, las llaves siempre definen un objeto",
+      "Sí, las llaves siempre delimitan un bloque de código",
+    ],
+    correcta: 0,
+    explicacion:
+      "Es la duda más común con { }. La pista está en lo que va delante: tras un = es un objeto; tras un if, for, function o => es un bloque de código.",
+  },
+  {
+    codigo: 'const campo = "edad";\n\nconsole.log(persona[campo]);\nconsole.log(persona.campo);',
+    marcado: "corchetes",
+    pregunta: "¿Por qué las dos líneas dan resultados distintos?",
+    opciones: [
+      "persona[campo] usa el VALOR de la variable ('edad'); persona.campo busca una propiedad llamada literalmente 'campo'",
+      "Son exactamente equivalentes, solo cambia el estilo",
+      "La segunda da un error de sintaxis",
+    ],
+    correcta: 0,
+    explicacion:
+      "Los corchetes evalúan lo de dentro; el punto toma el nombre literal. Por eso, cuando el nombre de la propiedad está en una variable, la única opción son los corchetes.",
+  },
+  {
+    codigo: "boton.addEventListener('click', saludar);\nboton.addEventListener('click', saludar());",
+    marcado: "parentesis",
+    pregunta: "¿Qué diferencia hay entre las dos líneas?",
+    opciones: [
+      "La primera pasa la función para que se ejecute al hacer clic; la segunda la ejecuta YA y pasa su resultado",
+      "Son equivalentes: los paréntesis sobran o faltan sin consecuencia",
+      "La segunda es la forma correcta de registrar un evento",
+    ],
+    correcta: 0,
+    explicacion:
+      "Los paréntesis significan 'ejecuta ahora'. En un listener quieres pasar la función SIN ejecutarla, para que el navegador la llame cuando ocurra el evento. Es un error clásico.",
+  },
+  {
+    codigo: 'const mensaje = "Hola " + nombre + ", tienes " + edad;\nconst mejor = `Hola ${nombre}, tienes ${edad}`;',
+    marcado: "template",
+    pregunta: "¿Qué hace falta para que funcione <code>${ }</code>?",
+    opciones: [
+      "Que el texto vaya entre comillas invertidas ` `, no entre comillas normales",
+      "Nada especial, funciona con cualquier tipo de comillas",
+      "Que la variable esté declarada con var",
+    ],
+    correcta: 0,
+    explicacion:
+      "${ } solo se interpreta dentro de comillas invertidas (template literals). Con comillas normales aparecería tal cual, como texto literal.",
   },
 ];

@@ -3,10 +3,10 @@
 Sitio estático de estudio de JavaScript, dividido en 13 páginas:
 
 - `index.html` — tarjetas de repaso (flip pregunta/respuesta) generadas a
-  partir de los 182 métodos/conceptos de `metodos.html` y los 6 pasos de
+  partir de los 196 métodos/conceptos de `metodos.html` y los 6 pasos de
   `pensar.html`. Filtros: Todos / JavaScript / TypeScript / Python / Cómo pensar, más una
   cuadrícula debajo para saltar a cualquier tarjeta.
-- `metodos.html` — quiz rápido a/b/c con 182 métodos y conceptos de JS, TypeScript
+- `metodos.html` — quiz rápido a/b/c con 196 métodos y conceptos de JS, TypeScript
   y Python, agrupados por categoría y ordenados por frecuencia de uso real:
   Variables, Arrays y objetos, Bucles, Funciones, Clases y constructores, DOM,
   Eventos, Texto, Conversión, Matemáticas, Promesas, Fetch y CRUD completo
@@ -21,9 +21,12 @@ Sitio estático de estudio de JavaScript, dividido en 13 páginas:
 - `identificar.html` — **¿qué estoy viendo?**: enseña a clasificar cualquier
   línea con dos preguntas (¿lleva paréntesis? ¿qué hay a la izquierda del
   punto?) en lugar de memorizar listas. Cubre las cinco familias
-  (propiedades, métodos de array/string/DOM/objetos), consejos de
-  reconocimiento al vuelo, 10 retos interactivos y, aparte, los errores
-  clásicos que delatan cada confusión.
+  (propiedades, métodos de array/string/DOM/objetos), **los tres símbolos**
+  con su pregunta mental —( ) ¿voy a ejecutar algo?, [ ] ¿voy a acceder o
+  guardar elementos?, { } ¿voy a agrupar o definir cosas?— y el truco para
+  distinguir sus distintos usos, consejos de reconocimiento al vuelo, 14
+  retos interactivos y, aparte, los errores clásicos que delatan cada
+  confusión.
 - `typescript.html` — **TypeScript** con el mismo enfoque: por frecuencia de
   uso real (3 niveles, lo menos usado aparte), cada concepto empezando por
   el problema que resuelve y con el JS al lado; sección dedicada a

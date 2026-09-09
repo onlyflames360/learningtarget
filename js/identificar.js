@@ -24,6 +24,49 @@ function renderRegla() {
     bloque(REGLA_PARENTESIS.metodo, "es-metodo");
 }
 
+// ---------- Los tres símbolos ----------
+function renderSimbolos() {
+  const cont = document.getElementById("simbolos");
+  cont.innerHTML = SIMBOLOS.map(
+    (s) => `
+    <article class="simbolo">
+      <div class="simbolo-cabecera">
+        <span class="simbolo-signo">${escapar(s.simbolo)}</span>
+        <div class="simbolo-titulo">
+          <span class="simbolo-nombre">${s.emoji} ${escapar(s.nombre)}</span>
+          <span class="simbolo-pregunta">«${escapar(s.pregunta)}»</span>
+        </div>
+      </div>
+
+      <ul class="simbolo-usos">
+        ${s.usos
+          .map(
+            (u) => `
+          <li>
+            <span class="uso-que">${escapar(u.que)}</span>
+            <code class="uso-ej">${escapar(u.ej)}</code>
+            ${u.nota ? `<span class="uso-nota">${escapar(u.nota)}</span>` : ""}
+          </li>`,
+          )
+          .join("")}
+      </ul>
+
+      <p class="simbolo-truco"><strong>Truco:</strong> ${escapar(s.truco)}</p>
+    </article>`,
+  ).join("");
+
+  document.getElementById("simbolosExtra").innerHTML = SIMBOLOS_EXTRA.map(
+    (s) => `
+    <div class="extra">
+      <code class="extra-signo">${escapar(s.simbolo)}</code>
+      <div>
+        <p class="extra-significa">${escapar(s.significa)}</p>
+        <code class="extra-ej">${escapar(s.ej)}</code>
+      </div>
+    </div>`,
+  ).join("");
+}
+
 // ---------- Familias (la tabla) ----------
 function renderFamilias() {
   const cont = document.getElementById("familias");
@@ -123,11 +166,12 @@ function renderReto() {
     cont.innerHTML = `
       <div class="reto-final">
         <p class="reto-final-emoji">🎯</p>
-        <h3>Ya reconoces las cinco familias</h3>
+        <h3>Ya sabes leer cualquier línea</h3>
         <p>
-          A partir de aquí, ante cualquier línea nueva puedes preguntarte:
-          ¿lleva paréntesis? y ¿qué hay a la izquierda del punto? Con eso
-          sabes qué es, aunque nunca lo hayas visto antes.
+          Ante algo que no has visto nunca, tienes tres preguntas:
+          ¿lleva paréntesis?, ¿qué hay a la izquierda del punto? y ¿qué
+          símbolo es y qué hay justo antes? Con eso lo colocas, aunque no
+          sepas todavía qué hace exactamente.
         </p>
         <button class="btn-primario" id="repetirReto" type="button">Repetir el entrenamiento 🔁</button>
       </div>
@@ -199,6 +243,7 @@ function mezclar(arr) {
 }
 
 renderRegla();
+renderSimbolos();
 renderFamilias();
 renderSenales();
 renderErrores();
