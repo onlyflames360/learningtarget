@@ -295,6 +295,12 @@ function renderCard() {
   const item = queue[pos];
   answered = false;
 
+  const hintCode = document.getElementById("hintCode");
+  hintCode.textContent = item.example;
+  hintCode.classList.remove("show");
+  document.getElementById("hintToggle").textContent =
+    "💡 Ver código de ejemplo (sin responder, solo para deducirlo)";
+
   const optionsOrder = shuffle(
     item.options.map((text, i) => ({ text, isCorrect: i === item.correct })),
   );
@@ -310,6 +316,7 @@ function renderCard() {
     <p class="ask">¿Qué hace?</p>
     <div class="options"></div>
     <div class="example-box" id="exampleBox"></div>
+    <button class="next-btn" id="nextBtn" type="button">Seguir →</button>
   `;
 
   const optionsEl = card.querySelector(".options");
@@ -321,6 +328,8 @@ function renderCard() {
     btn.addEventListener("click", () => selectOption(btn, opt, item, optionsEl));
     optionsEl.appendChild(btn);
   });
+
+  card.querySelector("#nextBtn").addEventListener("click", nextCard);
 
   cardArea.appendChild(card);
   updateStats();
@@ -353,6 +362,8 @@ function selectOption(btn, opt, item, optionsEl) {
   const exampleBox = document.getElementById("exampleBox");
   exampleBox.textContent = item.example;
   exampleBox.classList.add("show");
+
+  document.getElementById("nextBtn").classList.add("show");
 
   updateStats();
 }
@@ -413,6 +424,15 @@ document.getElementById("cardArea").addEventListener("click", (e) => {
   if (answered && e.target.closest(".example-box")) {
     nextCard();
   }
+});
+
+document.getElementById("hintToggle").addEventListener("click", () => {
+  const hintCode = document.getElementById("hintCode");
+  const hintToggle = document.getElementById("hintToggle");
+  const showing = hintCode.classList.toggle("show");
+  hintToggle.textContent = showing
+    ? "🙈 Ocultar código de ejemplo"
+    : "💡 Ver código de ejemplo (sin responder, solo para deducirlo)";
 });
 
 renderFilters();
