@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypeScript — de JavaScript a tipos</title>
+    <link rel="stylesheet" href="css/typescript.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="sitenav">
+        <div class="nav-links">
+          <a href="index.html">Tarjetas</a>
+          <a href="metodos.html">Métodos</a>
+          <a href="buscar.html">Buscador</a>
+          <a href="identificar.html">Identificar</a>
+          <a href="typescript.html" class="active">TypeScript</a>
+          <a href="ejercicios.html">Ejercicios</a>
+          <a href="constructor.html">Construye código</a>
+          <a href="juego.html">Juego</a>
+          <a href="pensar.html">Cómo pensar</a>
+          <a href="entrenador.html">Entrenador</a>
+          <a href="carpetas.html">Carpetas</a>
+          <a href="proyectos.html">Proyectos</a>
+        </div>
+        <button id="themeToggle" type="button">Modo oscuro</button>
+      </nav>
+
+      <header class="topbar">
+        <div class="ts-logo">TS</div>
+        <div>
+          <p class="eyebrow">El siguiente paso desde JavaScript</p>
+          <h1>TypeScript sin misterio</h1>
+        </div>
+      </header>
+      <p class="subtitle">
+        TypeScript <strong>es JavaScript</strong> con una capa que revisa tu
+        código mientras lo escribes. No hay que aprender un lenguaje nuevo:
+        hay que aprender a describir qué datos maneja el que ya sabes. Aquí
+        va ordenado por lo que de verdad se usa a diario, con el problema que
+        resuelve cada pieza y los errores del compilador traducidos.
+      </p>
+
+      <h2 class="section-title">Por qué existe · el problema real</h2>
+      <p class="section-note">
+        El mismo bug, visto desde los dos lados.
+      </p>
+      <section id="porque"></section>
+
+      <h2 class="section-title">La ruta · por frecuencia de uso real</h2>
+      <p class="section-note">
+        Lo del Nivel 1 lo usarás todos los días; lo del Nivel 3 quizá nunca
+        lo escribas tú, pero lo reconocerás al leer código ajeno. Despliega
+        cada concepto para ver el problema, el antes/después y el error
+        típico.
+      </p>
+      <div id="niveles"></div>
+
+      <h2 class="section-title">Descifra el error · lo que de verdad te bloquea</h2>
+      <p class="section-note">
+        Los mensajes del compilador asustan hasta que sabes leerlos. Estos
+        siete cubren la gran mayoría de lo que te vas a encontrar.
+      </p>
+      <div class="errores" id="errores"></div>
+
+      <h2 class="section-title">Practícalo · ¿qué tipo le pones?</h2>
+      <p class="section-note">
+        Seis situaciones reales de migración de JavaScript a TypeScript.
+        Cada una queda bloqueada hasta que aciertas.
+      </p>
+      <section class="reto" id="reto"></section>
+
+      <h2 class="section-title">Cómo empezar hoy mismo</h2>
+      <p class="section-note">
+        Cuatro pasos, sin reescribir nada: un .js válido es casi siempre un
+        .ts válido, así que se puede migrar archivo a archivo.
+      </p>
+      <div class="pasos" id="empezar"></div>
+
+      <div class="reglas-oro">
+        <h3>Reglas de oro</h3>
+        <ul id="reglasOro"></ul>
+      </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/typescript-data.js"></script>
+    <script src="js/typescript.js"></script>
+  </body>
+</html>

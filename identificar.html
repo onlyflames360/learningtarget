@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Identificar — ¿Qué estoy viendo?</title>
+    <link rel="stylesheet" href="css/identificar.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="sitenav">
+        <div class="nav-links">
+          <a href="index.html">Tarjetas</a>
+          <a href="metodos.html">Métodos</a>
+          <a href="buscar.html">Buscador</a>
+          <a href="identificar.html" class="active">Identificar</a>
+          <a href="typescript.html">TypeScript</a>
+          <a href="ejercicios.html">Ejercicios</a>
+          <a href="constructor.html">Construye código</a>
+          <a href="juego.html">Juego</a>
+          <a href="pensar.html">Cómo pensar</a>
+          <a href="entrenador.html">Entrenador</a>
+          <a href="carpetas.html">Carpetas</a>
+          <a href="proyectos.html">Proyectos</a>
+        </div>
+        <button id="themeToggle" type="button">Modo oscuro</button>
+      </nav>
+
+      <header class="topbar">
+        <p class="eyebrow">Leer código sin memorizar listas</p>
+        <h1>¿Qué estoy viendo?</h1>
+        <p class="subtitle">
+          Hay miles de métodos y propiedades: memorizarlos no es el camino.
+          Con <strong>dos preguntas</strong> puedes clasificar cualquier
+          línea que te encuentres, aunque nunca la hayas visto antes — y
+          saber qué esperar de ella.
+        </p>
+      </header>
+
+      <h2 class="section-title">Pregunta 1 · ¿Lleva paréntesis?</h2>
+      <p class="section-note">
+        Es lo primero que hay que mirar, y ya divide el mundo en dos.
+      </p>
+      <div class="regla" id="regla"></div>
+
+      <h2 class="section-title">Pregunta 2 · ¿Qué hay a la izquierda del punto?</h2>
+      <p class="section-note">
+        Eso determina la familia. Ordenadas por lo que te vas a encontrar
+        más a diario. Despliega cada una para ver cómo reconocerla.
+      </p>
+      <div class="familias" id="familias"></div>
+
+      <h2 class="section-title">Consejos útiles · señales que delatan cada cosa</h2>
+      <p class="section-note">
+        Atajos de reconocimiento: en cuanto ves la señal, sabes de qué se
+        trata sin buscar nada.
+      </p>
+      <div class="senales" id="senales"></div>
+
+      <h2 class="section-title">Entrénalo · identifica al vuelo</h2>
+      <p class="section-note">
+        Diez líneas reales. Cada una queda bloqueada hasta que aciertas.
+      </p>
+      <section class="reto" id="reto"></section>
+
+      <h2 class="section-title">Menos frecuente · errores que delatan una confusión</h2>
+      <p class="section-note">
+        No pasan a diario, pero cuando pasan bloquean. Aquí está qué
+        significa cada uno.
+      </p>
+      <div class="errores" id="errores"></div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/identificar-data.js"></script>
+    <script src="js/identificar.js"></script>
+  </body>
+</html>

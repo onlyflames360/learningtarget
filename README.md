@@ -18,6 +18,17 @@ Sitio estático de estudio de JavaScript, dividido en 8 páginas:
   buscas, qué es exactamente y un ejemplo de uso. Indexa 68 intenciones
   curadas + los 160 métodos de `metodos-data.js`. Sin query muestra un
   resumen de todo lo que contiene.
+- `identificar.html` — **¿qué estoy viendo?**: enseña a clasificar cualquier
+  línea con dos preguntas (¿lleva paréntesis? ¿qué hay a la izquierda del
+  punto?) en lugar de memorizar listas. Cubre las cinco familias
+  (propiedades, métodos de array/string/DOM/objetos), consejos de
+  reconocimiento al vuelo, 10 retos interactivos y, aparte, los errores
+  clásicos que delatan cada confusión.
+- `typescript.html` — **TypeScript** con el mismo enfoque: por frecuencia de
+  uso real (3 niveles, lo menos usado aparte), cada concepto empezando por
+  el problema que resuelve y con el JS al lado; sección dedicada a
+  **descifrar los errores del compilador** (TS2322, TS2339, TS18047...), 6
+  ejercicios de tipado y una guía de arranque con reglas de oro.
 - `ejercicios.html` — quiz a/b/c por cada proyecto de `proyectos.html` (30
   preguntas en total), ordenadas de fácil a nivel senior dentro de cada tema.
   El progreso por tema se guarda en `localStorage`.
