@@ -1,5 +1,6 @@
 const PROGRESO_KEY = "ejercicios-progreso";
 const KEYS = ["a", "b", "c"];
+const ORDEN_DIFICULTAD = { Fácil: 0, Medio: 1, Avanzado: 2, Senior: 3 };
 
 let topicFilter = TOPICS[0];
 let queue = [];
@@ -35,11 +36,14 @@ function marcarTopicCompletado(topic) {
 }
 
 function preguntasDe(topic) {
-  return EJERCICIOS.filter((item) => item.topic === topic);
+  // Ordenadas de fácil a senior: no se mezclan, hay que superarlas en orden.
+  return EJERCICIOS.filter((item) => item.topic === topic).sort(
+    (a, b) => ORDEN_DIFICULTAD[a.dificultad] - ORDEN_DIFICULTAD[b.dificultad],
+  );
 }
 
 function startRound() {
-  const pool = shuffle(preguntasDe(topicFilter));
+  const pool = preguntasDe(topicFilter);
   queue = pool.map((item, i) => ({ ...item, uid: i + "-" + Date.now() }));
   pos = 0;
   total = queue.length;
@@ -97,6 +101,7 @@ function renderCard() {
     <p class="pregunta">${item.pregunta}</p>
     <div class="options"></div>
     <div class="explain-box" id="explainBox"></div>
+    <button class="next-btn" id="nextBtn" type="button">Seguir →</button>
   `;
 
   const optionsEl = card.querySelector(".options");
@@ -109,35 +114,32 @@ function renderCard() {
     optionsEl.appendChild(btn);
   });
 
+  card.querySelector("#nextBtn").addEventListener("click", nextCard);
+
   cardArea.appendChild(card);
   updateStats();
 }
 
 function selectOption(btn, opt, item, optionsEl) {
-  if (answered) return;
-  answered = true;
+  if (answered) return; // ya se acertó: esta pregunta queda bloqueada hasta "Seguir"
   attempts++;
 
   if (opt.isCorrect) {
+    answered = true;
     correctCount++;
     btn.classList.add("correct");
+    [...optionsEl.children].forEach((child) => (child.disabled = true));
+
+    const explainBox = document.getElementById("explainBox");
+    explainBox.textContent = item.explicacion;
+    explainBox.classList.add("show");
+
+    document.getElementById("nextBtn").classList.add("show");
   } else {
+    // Falla: se bloquea solo esa opción, hay que seguir intentando en la misma pregunta
     btn.classList.add("incorrect");
-    [...optionsEl.children].forEach((child) => {
-      if (child.textContent.trim().endsWith(item.opciones[item.correcta])) {
-        child.classList.add("correct");
-      }
-    });
-    // Falla: la pregunta vuelve a salir al final de la ronda
-    queue.push({ ...item, uid: item.uid + "-retry-" + Date.now() });
-    total = queue.length;
+    btn.disabled = true;
   }
-
-  [...optionsEl.children].forEach((child) => (child.disabled = true));
-
-  const explainBox = document.getElementById("explainBox");
-  explainBox.textContent = item.explicacion;
-  explainBox.classList.add("show");
 
   updateStats();
 }

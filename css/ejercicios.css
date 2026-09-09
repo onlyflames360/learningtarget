@@ -327,6 +327,27 @@ h1 {
   display: block;
 }
 
+.next-btn {
+  display: none;
+  margin-top: 18px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 12px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.next-btn:hover {
+  background: var(--primary-dark);
+}
+
+.next-btn.show {
+  display: inline-block;
+}
+
 .next-hint {
   text-align: center;
   margin-top: 22px;

@@ -125,27 +125,23 @@ function escapeHtml(s) {
 }
 
 function elegirOpcion(btn, opt, paso, optionsEl) {
-  if (answered) return;
-  answered = true;
+  if (answered) return; // ya se acertó: este paso queda bloqueado hasta continuar
 
   if (opt.esCorrecta) {
+    answered = true;
     btn.classList.add("correct");
+    [...optionsEl.children].forEach((child) => (child.disabled = true));
+
+    const explainBox = document.getElementById("explainBox");
+    explainBox.textContent = paso.explicacion;
+    explainBox.classList.add("show");
+
+    document.getElementById("continueBtn").classList.add("show");
   } else {
+    // Falla: se bloquea solo esa opción, hay que seguir intentando el mismo paso
     btn.classList.add("incorrect");
-    [...optionsEl.children].forEach((child) => {
-      if (child.textContent.trim().endsWith(paso.opciones[paso.correcta])) {
-        child.classList.add("correct");
-      }
-    });
+    btn.disabled = true;
   }
-
-  [...optionsEl.children].forEach((child) => (child.disabled = true));
-
-  const explainBox = document.getElementById("explainBox");
-  explainBox.textContent = paso.explicacion;
-  explainBox.classList.add("show");
-
-  document.getElementById("continueBtn").classList.add("show");
 }
 
 function continuarPaso() {
