@@ -159,6 +159,7 @@ h2.section-title {
 }
 
 .structure-card {
+  min-width: 0;
   background: var(--panel);
   border: 1px solid rgba(141, 90, 43, 0.16);
   border-radius: 18px;
@@ -254,4 +255,253 @@ pre.tree {
 
 .secondary-accordion.open .secondary-body {
   display: block;
+}
+
+/* ---------- Instalación de herramientas ---------- */
+h3.sub-title {
+  font-size: 1.02rem;
+  margin: 30px 0 6px;
+}
+
+.formas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.forma-card {
+  min-width: 0;
+  background: var(--panel);
+  border: 1px solid rgba(141, 90, 43, 0.16);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 16px 18px;
+}
+
+.forma-apodo {
+  display: inline-block;
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary-dark);
+  background: rgba(141, 90, 43, 0.12);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.forma-comando {
+  display: block;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink);
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+.forma-que {
+  margin: 0 0 12px;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 0.88rem;
+}
+
+/* Bloque de consola: se distingue del árbol de carpetas por el prompt */
+pre.consola {
+  background: #2b2420;
+  color: #f3e7d5;
+  padding: 13px 15px;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.81rem;
+  line-height: 1.6;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.tabla-wrap {
+  overflow-x: auto;
+  background: var(--panel);
+  border: 1px solid rgba(141, 90, 43, 0.16);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 6px;
+}
+
+table.gestores {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.82rem;
+}
+
+table.gestores th,
+table.gestores td {
+  text-align: left;
+  padding: 9px 11px;
+  border-bottom: 1px solid rgba(141, 90, 43, 0.14);
+  white-space: nowrap;
+}
+
+table.gestores thead th {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary-dark);
+}
+
+table.gestores tbody th {
+  font-weight: 700;
+  color: var(--ink);
+  white-space: normal;
+  min-width: 190px;
+}
+
+table.gestores code {
+  font-family: "Courier New", Courier, monospace;
+  color: var(--muted);
+}
+
+table.gestores tbody tr:last-child th,
+table.gestores tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.herramienta-card {
+  background: var(--panel);
+  border: 1px solid rgba(141, 90, 43, 0.16);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.herramienta-summary {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 16px 18px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: inherit;
+}
+
+.herramienta-titulo {
+  min-width: 0;
+}
+
+.herramienta-nombre {
+  display: block;
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.herramienta-para {
+  display: block;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.herramienta-derecha {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.herramienta-summary .chevron {
+  color: var(--primary);
+  transition: transform 0.2s ease;
+}
+
+.herramienta-card.open .chevron {
+  transform: rotate(180deg);
+}
+
+.herramienta-body {
+  display: none;
+  padding: 0 18px 18px;
+}
+
+.herramienta-card.open .herramienta-body {
+  display: block;
+}
+
+.forma {
+  border-top: 1px dashed rgba(141, 90, 43, 0.25);
+  padding-top: 14px;
+  margin-top: 14px;
+}
+
+.forma-titulo {
+  margin: 0 0 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--primary-dark);
+}
+
+.forma-cuando {
+  margin: 10px 0 0;
+  font-size: 0.87rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* El título del árbol va suelto, sin .forma: necesita su propia separación */
+.herramienta-body > .forma-titulo {
+  border-top: 1px dashed rgba(141, 90, 43, 0.25);
+  padding-top: 14px;
+  margin-top: 16px;
+}
+
+.herramienta-body .tree {
+  margin-top: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.ojo {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--success-soft);
+  border-left: 4px solid var(--success);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.ojo strong {
+  color: var(--success);
+}
+
+@media (max-width: 600px) {
+  .structure-card,
+  .forma-card {
+    padding: 16px 14px;
+  }
+  .herramienta-summary {
+    padding: 14px;
+  }
+  .herramienta-body {
+    padding: 0 14px 16px;
+  }
+  .herramienta-derecha {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 6px;
+  }
 }

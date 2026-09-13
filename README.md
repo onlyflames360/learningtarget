@@ -1,6 +1,6 @@
 # Tarjetas de aprender
 
-Sitio estático de estudio de JavaScript, dividido en 13 páginas:
+Sitio estático de estudio de JavaScript, dividido en 14 páginas:
 
 - `index.html` — tarjetas de repaso (flip pregunta/respuesta) generadas a
   partir de los 212 métodos/conceptos de `metodos.html` y los 6 pasos de
@@ -70,7 +70,19 @@ Sitio estático de estudio de JavaScript, dividido en 13 páginas:
 - `carpetas.html` — cómo organizar las carpetas de un proyecto, ordenado por
   frecuencia de uso: las estructuras más usadas siempre visibles arriba, y
   los casos especiales (bundlers, tests, backend, TypeScript...) aparte, más
-  abajo, en acordeones plegados.
+  abajo, en acordeones plegados. Debajo, **cómo se instala cada
+  herramienta**: las cinco formas que existen (local, -D, -g, npx, CDN) y en
+  qué se diferencian, la misma orden traducida a npm/pnpm/yarn/bun, y 11
+  herramientas (Node, Vite, Sass, TypeScript, Tailwind, ESLint/Prettier,
+  servidor local, Express, Vitest, Vercel, Bootstrap) con todas sus formas de
+  instalación, cuándo usar cada una, cómo queda la carpeta y el fallo típico.
+- `linux.html` — **Linux y la terminal**: 69 comandos agrupados en 14
+  categorías (moverse, ver, crear/borrar, buscar, tuberías, permisos,
+  procesos, disco, red, paquetes, comprimir, entorno, Git y WSL), cada uno
+  con para qué sirve, un ejemplo real con su salida y el equivalente en
+  PowerShell. Buscador por intención ("puerto ocupado", "cuánto espacio
+  queda") o por categoría, avisos en rojo sobre los comandos que no perdonan
+  (`rm -rf`, `sudo`, `git restore`) y los atajos de teclado al final.
 - `proyectos.html` — las 9 apps pequeñas a construir (objetivo final del
   recorrido), con explicación, código de ejemplo, pasos y desafíos extra.
 

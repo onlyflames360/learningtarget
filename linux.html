@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linux y la terminal — comandos más usados</title>
+    <link rel="stylesheet" href="css/linux.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <!-- Retomar donde lo dejaste: va en el head para saltar antes de pintar -->
+    <script src="js/sesion.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="sitenav" id="sitenav"></nav>
+
+      <header class="topbar">
+        <p class="eyebrow">La terminal sin misterio</p>
+        <h1>Linux y la terminal</h1>
+        <p class="subtitle">
+          Los comandos que se usan de verdad, con un ejemplo real de cada uno
+          y su equivalente en Windows. Escribe lo que quieres hacer —"borrar
+          una carpeta", "ver qué ocupa el disco", "puerto ocupado"— o pulsa
+          una categoría y los tienes todos delante.
+        </p>
+      </header>
+
+      <section class="ideas" id="ideasBase"></section>
+
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input
+          id="buscadorInput"
+          type="text"
+          autocomplete="off"
+          placeholder="Ej: borrar carpeta, buscar texto, puerto ocupado, permisos..."
+        />
+        <button class="limpiar-btn" id="limpiarBtn" type="button">Limpiar</button>
+      </div>
+
+      <div class="cats" id="cats"></div>
+
+      <main id="resultados"></main>
+
+      <section class="atajos">
+        <h2>Atajos de teclado que ahorran el día</h2>
+        <p class="atajos-nota">
+          No son comandos: se pulsan. Son la diferencia entre pelearse con la
+          terminal y moverse por ella.
+        </p>
+        <div class="atajos-grid" id="atajosGrid"></div>
+      </section>
+    </div>
+
+    <script src="js/nav.js"></script>
+
+    <script src="js/theme.js"></script>
+    <script src="js/linux-data.js"></script>
+    <script src="js/linux.js"></script>
+  </body>
+</html>

@@ -13,6 +13,7 @@ const PAGINAS = [
   { href: "pensar.html", texto: "Cómo pensar" },
   { href: "entrenador.html", texto: "Entrenador" },
   { href: "carpetas.html", texto: "Carpetas" },
+  { href: "linux.html", texto: "Linux y terminal" },
   { href: "proyectos.html", texto: "Proyectos" },
 ];
 
