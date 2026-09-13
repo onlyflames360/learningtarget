@@ -1,5 +1,9 @@
 // Buscador por intención: escribes lo que quieres hacer y te dice qué necesitas.
-// Fuentes: INTENCIONES (js/buscar-data.js) + los 160 métodos de js/metodos-data.js.
+// Fuentes: INTENCIONES (js/buscar-data.js) + los métodos de js/metodos-data.js.
+//
+// Dos caminos para llegar a lo mismo:
+//   1. Escribir en la caja de búsqueda.
+//   2. Pulsar una categoría de la portada, que abre todo lo que hay dentro.
 
 const EJEMPLOS_RAPIDOS = [
   "cambiar número a texto",
@@ -12,6 +16,14 @@ const EJEMPLOS_RAPIDOS = [
   "quitar espacios",
   "número al azar",
   "ordenar una lista",
+  "esperar a que termine algo",
+  "quitar duplicados",
+  "copiar un objeto sin tocar el original",
+  "esperar unos segundos",
+  "sumar los números de una lista",
+  "redondear un número",
+  "qué tipo de dato es",
+  "leer lo que escribió el usuario",
 ];
 
 const PALABRAS_VACIAS = new Set([
@@ -26,7 +38,8 @@ function normalizar(texto) {
     .toLowerCase()
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")
-    .replace(/[^a-z0-9\s.()_]/g, " ")
+    // Se conservan los símbolos: así se puede buscar "=>", "?." o "[ ]" tal cual
+    .replace(/[^a-z0-9\s.()_?!=<>%&|+\-*/[\]{}]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -46,13 +59,18 @@ INTENCIONES.forEach((item) => {
     intencion: item.q,
     categoria: item.cat,
     js: item.js,
+    ts: item.ts || null,
     py: item.py,
     que: item.que,
     ejemplo: item.ej,
+    ejemploPro: item.pro || null,
+    porQue: item.porQue || null,
     campoTitulo: normalizar(item.q),
     campoClaves: normalizar(item.k),
-    campoHerramienta: normalizar(item.js + " " + (item.py || "")),
-    campoQue: normalizar(item.que),
+    campoHerramienta: normalizar(
+      (item.js || "") + " " + (item.ts || "") + " " + (item.py || ""),
+    ),
+    campoQue: normalizar(item.que + " " + (item.pro || "")),
   });
 });
 
@@ -64,6 +82,7 @@ DATA.forEach((item) => {
     categoria: item.cat,
     lang: item.lang,
     js: item.lang === "JavaScript" ? item.method : null,
+    ts: item.lang === "TypeScript" ? item.method : null,
     py: item.lang === "Python" ? item.method : null,
     que: descripcion,
     ejemplo: item.example,
@@ -73,6 +92,26 @@ DATA.forEach((item) => {
     campoQue: normalizar(descripcion + " " + item.example),
   });
 });
+
+// Recuento por categoría: cuántos métodos y cuántos atajos tiene cada una.
+// Se calcula una vez y sirve para la portada y para la cabecera de cada categoría.
+const CATEGORIAS = (() => {
+  const mapa = new Map();
+  const anotar = (cat, clave) => {
+    if (!mapa.has(cat)) mapa.set(cat, { cat, metodos: 0, atajos: 0, senior: 0 });
+    mapa.get(cat)[clave]++;
+  };
+  DATA.forEach((d) => anotar(d.cat, "metodos"));
+  INTENCIONES.forEach((i) => {
+    anotar(i.cat, "atajos");
+    if (i.pro) anotar(i.cat, "senior");
+  });
+  return [...mapa.values()].sort(
+    (a, b) => b.atajos - a.atajos || b.metodos - a.metodos,
+  );
+})();
+
+const CON_SENIOR = INTENCIONES.filter((i) => i.pro).length;
 
 // ¿Aparecen todas las palabras en el mismo orden que las escribió el usuario?
 // Es lo que distingue "cambiar número a texto" de "cambiar texto a número".
@@ -121,26 +160,90 @@ function buscar(consultaCruda) {
     .map((r) => r.entrada);
 }
 
-// ---------- Render ----------
+// ---------- Memoria entre visitas ----------
+// Se recuerdan la última búsqueda y la última categoría abierta, para volver
+// justo a donde lo dejaste.
+const BUSQUEDA_KEY = "buscar-ultima";
+const CATEGORIA_KEY = "buscar-categoria";
+
+function guardar(clave, texto) {
+  try {
+    localStorage.setItem(clave, texto);
+  } catch (e) {}
+}
+
+function recuperar(clave) {
+  try {
+    return localStorage.getItem(clave) || "";
+  } catch (e) {
+    return "";
+  }
+}
+
 const input = document.getElementById("buscadorInput");
 const resultados = document.getElementById("resultados");
 const chips = document.getElementById("chips");
+
+// Qué categoría está abierta ahora mismo ("" = ninguna, se ve la portada)
+let categoriaAbierta = "";
 
 function escapar(texto) {
   return String(texto).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
+// Un mismo concepto puede existir en varios lenguajes: se listan los que haya
+function herramientasDe(entrada) {
+  return [
+    entrada.js ? { lang: "JavaScript", valor: entrada.js } : null,
+    entrada.ts ? { lang: "TypeScript", valor: entrada.ts } : null,
+    entrada.py ? { lang: "Python", valor: entrada.py } : null,
+  ].filter(Boolean);
+}
+
+// La etiqueta de categoría también es un botón: lleva a todo lo de ese tema
+function etiquetaCategoria(cat) {
+  return `<button class="res-cat" type="button" data-cat="${escapar(cat)}">${escapar(cat)}</button>`;
+}
+
+// Los ejemplos se muestran en dos niveles cuando hay versión avanzada:
+// primero el simple (junior) y debajo, bien marcado, el de producción (senior).
+function bloqueEjemplos(entrada) {
+  if (!entrada.ejemplo) return "";
+
+  const junior = `<pre class="res-ejemplo"><code>${escapar(entrada.ejemplo)}</code></pre>`;
+  if (!entrada.ejemploPro) return junior;
+
+  return `
+    <p class="nivel nivel-junior">
+      <span class="nivel-etiqueta">Junior</span>
+      <span class="nivel-pie">lo primero que funciona</span>
+    </p>
+    ${junior}
+
+    <div class="bloque-senior">
+      <p class="nivel nivel-senior">
+        <span class="nivel-etiqueta">Senior</span>
+        <span class="nivel-pie">cómo se escribe en producción</span>
+      </p>
+      <pre class="res-ejemplo"><code>${escapar(entrada.ejemploPro)}</code></pre>
+      ${
+        entrada.porQue
+          ? `<p class="por-que"><strong>Por qué:</strong> ${escapar(entrada.porQue)}</p>`
+          : ""
+      }
+    </div>
+  `;
+}
+
 function tarjetaHerramienta(entrada, esPrincipal) {
-  const herramientas = [];
-  if (entrada.js) herramientas.push({ lang: "JavaScript", valor: entrada.js });
-  if (entrada.py) herramientas.push({ lang: "Python", valor: entrada.py });
+  const herramientas = herramientasDe(entrada);
 
   return `
     <article class="resultado ${esPrincipal ? "principal" : ""}">
       ${esPrincipal ? '<p class="veredicto">👉 Esto es lo que buscas</p>' : ""}
       <div class="res-cabecera">
         <p class="res-intencion">${escapar(entrada.intencion)}</p>
-        <span class="res-cat">${escapar(entrada.categoria)}</span>
+        ${etiquetaCategoria(entrada.categoria)}
       </div>
 
       <div class="res-herramientas">
@@ -157,29 +260,31 @@ function tarjetaHerramienta(entrada, esPrincipal) {
 
       <p class="res-que"><strong>Qué es:</strong> ${escapar(entrada.que)}</p>
 
-      ${
-        entrada.ejemplo
-          ? `<pre class="res-ejemplo"><code>${escapar(entrada.ejemplo)}</code></pre>`
-          : ""
-      }
+      ${bloqueEjemplos(entrada)}
+    </article>
+  `;
+}
+
+// Tarjeta compacta para los métodos de una categoría: como van muchos seguidos,
+// se aprietan más que las tarjetas de resultado.
+function tarjetaMetodo(entrada) {
+  const herramienta = herramientasDe(entrada)[0];
+
+  return `
+    <article class="metodo">
+      <div class="metodo-cabecera">
+        <code class="metodo-nombre">${escapar(
+          herramienta ? herramienta.valor : entrada.intencion,
+        )}</code>
+        ${herramienta ? `<span class="metodo-lang">${herramienta.lang}</span>` : ""}
+      </div>
+      <p class="metodo-que">${escapar(entrada.que)}</p>
+      ${bloqueEjemplos(entrada)}
     </article>
   `;
 }
 
 function renderPortada() {
-  const porCategoria = {};
-  INTENCIONES.forEach((i) => {
-    porCategoria[i.cat] = (porCategoria[i.cat] || 0) + 1;
-  });
-  const metodosPorCat = {};
-  DATA.forEach((d) => {
-    metodosPorCat[d.cat] = (metodosPorCat[d.cat] || 0) + 1;
-  });
-
-  const categorias = Object.keys(metodosPorCat).sort(
-    (a, b) => (porCategoria[b] || 0) - (porCategoria[a] || 0),
-  );
-
   resultados.innerHTML = `
     <section class="portada">
       <h2 class="portada-titulo">Qué contiene este buscador</h2>
@@ -189,26 +294,92 @@ function renderPortada() {
         palabras — sin tecnicismos — y te digo cuál es la herramienta que
         necesitas, qué es exactamente y cómo se usa.
       </p>
+      <p class="portada-sub">
+        ${CON_SENIOR} de esos atajos traen además la
+        <strong>versión senior</strong>: el mismo problema resuelto como se
+        escribe en producción, con el porqué al lado.
+      </p>
+      <p class="portada-hint">
+        O pulsa una categoría y verás de golpe todo lo que tiene dentro 👇
+      </p>
       <div class="portada-grid">
-        ${categorias
-          .map(
-            (cat) => `
-          <div class="portada-cat">
-            <span class="portada-cat-nombre">${escapar(cat)}</span>
-            <span class="portada-cat-num">${metodosPorCat[cat]} métodos${
-              porCategoria[cat] ? " · " + porCategoria[cat] + " atajos" : ""
-            }</span>
-          </div>`,
-          )
-          .join("")}
+        ${CATEGORIAS.map(
+          (c) => `
+          <button class="portada-cat" type="button" data-cat="${escapar(c.cat)}">
+            <span class="portada-cat-texto">
+              <span class="portada-cat-nombre">${escapar(c.cat)}</span>
+              <span class="portada-cat-num">${c.metodos} métodos${
+                c.atajos ? " · " + c.atajos + " atajos" : ""
+              }${c.senior ? " · " + c.senior + " senior" : ""}</span>
+            </span>
+            <span class="portada-cat-ir">Ver →</span>
+          </button>`,
+        ).join("")}
       </div>
+    </section>
+  `;
+}
+
+function renderCategoria(cat) {
+  const info = CATEGORIAS.find((c) => c.cat === cat);
+  // Si la categoría guardada ya no existe, se vuelve a la portada sin ruido
+  if (!info) {
+    categoriaAbierta = "";
+    guardar(CATEGORIA_KEY, "");
+    renderPortada();
+    return;
+  }
+
+  const atajos = INDICE.filter((e) => e.tipo === "intencion" && e.categoria === cat);
+  const metodos = INDICE.filter((e) => e.tipo === "metodo" && e.categoria === cat);
+
+  // Los métodos se agrupan por lenguaje para no mezclar dos sintaxis de golpe
+  const porLenguaje = ["JavaScript", "TypeScript", "Python"]
+    .map((lang) => ({ lang, lista: metodos.filter((m) => m.lang === lang) }))
+    .filter((g) => g.lista.length);
+
+  const volver = `<button class="volver-btn" type="button" data-volver="1">← Todas las categorías</button>`;
+
+  resultados.innerHTML = `
+    <section class="categoria">
+      <div class="cat-cabecera">
+        ${volver}
+        <h2 class="cat-titulo">${escapar(cat)}</h2>
+        <p class="cat-resumen">
+          ${info.metodos} método${info.metodos === 1 ? "" : "s"}${
+            info.atajos ? ` · ${info.atajos} atajo${info.atajos === 1 ? "" : "s"}` : ""
+          }${info.senior ? ` · ${info.senior} con versión senior` : ""}
+        </p>
+      </div>
+
+      ${
+        atajos.length
+          ? `<p class="cat-seccion">Lo que puedes querer hacer</p>` +
+            atajos.map((e) => tarjetaHerramienta(e, false)).join("")
+          : ""
+      }
+
+      ${porLenguaje
+        .map(
+          (g) => `
+        <p class="cat-seccion">${g.lang} · ${g.lista.length} método${
+          g.lista.length === 1 ? "" : "s"
+        }</p>
+        <div class="metodos-lista">
+          ${g.lista.map(tarjetaMetodo).join("")}
+        </div>`,
+        )
+        .join("")}
+
+      <div class="cat-pie">${volver}</div>
     </section>
   `;
 }
 
 function render(consulta) {
   if (!normalizar(consulta)) {
-    renderPortada();
+    if (categoriaAbierta) renderCategoria(categoriaAbierta);
+    else renderPortada();
     return;
   }
 
@@ -246,6 +417,35 @@ function render(consulta) {
       : "");
 }
 
+// ---------- Moverse entre portada, categoría y búsqueda ----------
+function abrirCategoria(cat) {
+  categoriaAbierta = cat;
+  guardar(CATEGORIA_KEY, cat);
+  // Abrir una categoría cancela la búsqueda: son dos caminos distintos
+  input.value = "";
+  guardar(BUSQUEDA_KEY, "");
+  renderCategoria(cat);
+  resultados.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function cerrarCategoria() {
+  categoriaAbierta = "";
+  guardar(CATEGORIA_KEY, "");
+  renderPortada();
+  resultados.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+// Un solo listener para toda la zona de resultados: las tarjetas se repintan
+// enteras cada vez, así que enganchar los botones uno a uno no serviría.
+resultados.addEventListener("click", (e) => {
+  const aCategoria = e.target.closest("[data-cat]");
+  if (aCategoria) {
+    abrirCategoria(aCategoria.dataset.cat);
+    return;
+  }
+  if (e.target.closest("[data-volver]")) cerrarCategoria();
+});
+
 function renderChips() {
   chips.innerHTML = EJEMPLOS_RAPIDOS.map(
     (ej) => `<button class="chip" type="button">${escapar(ej)}</button>`,
@@ -253,7 +453,10 @@ function renderChips() {
   [...chips.children].forEach((btn) => {
     btn.addEventListener("click", () => {
       input.value = btn.textContent;
+      categoriaAbierta = "";
+      guardar(CATEGORIA_KEY, "");
       render(input.value);
+      guardar(BUSQUEDA_KEY, input.value);
       input.focus();
     });
   });
@@ -262,14 +465,28 @@ function renderChips() {
 let temporizador = null;
 input.addEventListener("input", () => {
   clearTimeout(temporizador);
-  temporizador = setTimeout(() => render(input.value), 140);
+  temporizador = setTimeout(() => {
+    // Escribir manda: si había una categoría abierta, se cierra
+    if (normalizar(input.value) && categoriaAbierta) {
+      categoriaAbierta = "";
+      guardar(CATEGORIA_KEY, "");
+    }
+    render(input.value);
+    guardar(BUSQUEDA_KEY, input.value);
+  }, 140);
 });
 
 document.getElementById("limpiarBtn").addEventListener("click", () => {
   input.value = "";
+  categoriaAbierta = "";
+  guardar(BUSQUEDA_KEY, "");
+  guardar(CATEGORIA_KEY, "");
   render("");
   input.focus();
 });
 
 renderChips();
-render("");
+input.value = recuperar(BUSQUEDA_KEY);
+// La búsqueda guardada manda sobre la categoría guardada: es lo último que se hizo
+categoriaAbierta = input.value ? "" : recuperar(CATEGORIA_KEY);
+render(input.value);

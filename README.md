@@ -3,28 +3,33 @@
 Sitio estático de estudio de JavaScript, dividido en 13 páginas:
 
 - `index.html` — tarjetas de repaso (flip pregunta/respuesta) generadas a
-  partir de los 196 métodos/conceptos de `metodos.html` y los 6 pasos de
+  partir de los 212 métodos/conceptos de `metodos.html` y los 6 pasos de
   `pensar.html`. Filtros: Todos / JavaScript / TypeScript / Python / Cómo pensar, más una
   cuadrícula debajo para saltar a cualquier tarjeta.
-- `metodos.html` — quiz rápido a/b/c con 196 métodos y conceptos de JS, TypeScript
+- `metodos.html` — quiz rápido a/b/c con 212 métodos y conceptos de JS, TypeScript
   y Python, agrupados por categoría y ordenados por frecuencia de uso real:
-  Variables, Arrays y objetos, Bucles, Funciones, Clases y constructores, DOM,
-  Eventos, Texto, Conversión, Matemáticas, Promesas, Fetch y CRUD completo
-  primero; Objetos del navegador, Módulos ES6 y TypeScript básico (lo menos
-  usado) al final.
+  Variables, Condicionales, Arrays y objetos, Bucles, Funciones, Clases y
+  constructores, DOM, Eventos, Texto, Conversión, Matemáticas, Promesas, Fetch
+  y CRUD completo primero; Objetos del navegador, Módulos ES6 y TypeScript
+  básico (lo menos usado) al final.
 - `buscar.html` — **buscador por intención**: escribes lo que quieres hacer
   con tus palabras ("cambiar número a texto", "contador de letras", "guardar
   datos aunque cierre el navegador") y te dice cuál es la herramienta que
-  buscas, qué es exactamente y un ejemplo de uso. Indexa 68 intenciones
-  curadas + los 160 métodos de `metodos-data.js`. Sin query muestra un
-  resumen de todo lo que contiene.
+  buscas, qué es exactamente y un ejemplo de uso. Indexa 143 intenciones
+  curadas + los 212 métodos de `metodos-data.js`, y también encuentra los
+  símbolos escritos tal cual (`=>`, `?.`, `??`, `[ ]`). **101 de esas
+  intenciones traen dos niveles**: el ejemplo *junior* (lo primero que
+  funciona) y debajo, marcado, el *senior* (cómo se escribe en producción)
+  con una línea explicando por qué. Sin query muestra las 18 categorías
+  como botones: al pulsar uno se abre la categoría entera —sus atajos y
+  todos sus métodos por lenguaje—, sin tener que acertar con la palabra.
 - `identificar.html` — **¿qué estoy viendo?**: enseña a clasificar cualquier
   línea con dos preguntas (¿lleva paréntesis? ¿qué hay a la izquierda del
   punto?) en lugar de memorizar listas. Cubre las cinco familias
   (propiedades, métodos de array/string/DOM/objetos), **los tres símbolos**
   con su pregunta mental —( ) ¿voy a ejecutar algo?, [ ] ¿voy a acceder o
   guardar elementos?, { } ¿voy a agrupar o definir cosas?— y el truco para
-  distinguir sus distintos usos, consejos de reconocimiento al vuelo, 14
+  distinguir sus distintos usos, consejos de reconocimiento al vuelo, 15
   retos interactivos y, aparte, los errores clásicos que delatan cada
   confusión.
 - `typescript.html` — **TypeScript** con el mismo enfoque: por frecuencia de
@@ -78,6 +83,27 @@ La navegación también es compartida: `js/nav.js` contiene la lista de
 secciones y la genera en todas las páginas (añadir una sección nueva es
 editar solo esa lista), y `css/nav.css` la hace responsive — en móvil se
 convierte en un menú hamburguesa desplegable con la barra fija arriba.
+
+## Retomar donde lo dejaste
+
+`js/sesion.js` se carga en el `<head>` de todas las páginas y guarda en
+`localStorage` (clave `tarjetas-sesion`) la última página abierta y el scroll
+de cada una. Al abrir la app por `index.html`, si la última página era otra,
+salta a ella con `location.replace()` y recupera la altura de scroll. Para
+quedarte en el inicio basta con pulsar **Tarjetas** en el menú: ese clic deja
+una nota en `sessionStorage` que cancela el salto esa vez.
+
+Se guarda con `visibilitychange` y `pagehide`, que son los eventos que sí se
+disparan al cerrar la app en el móvil, y con el scroll parado 400 ms.
+
+Además, cada página recuerda su propio "sitio":
+
+| Página | Qué recuerda | Clave |
+| --- | --- | --- |
+| `index.html` | filtro, tarjeta actual y tarjetas aprendidas | `index-tarjetas` |
+| `metodos.html` | idioma y categoría elegidos | `metodos-filtros` |
+| `buscar.html` | la última búsqueda escrita | `buscar-ultima` |
+| `ejercicios.html`, `constructor.html`, `juego.html`, `entrenador.html`, `practicas.html` | su progreso, ya de antes | `*-progreso`, `*-estado` |
 
 ## Cómo usarla localmente
 

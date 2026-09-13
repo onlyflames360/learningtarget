@@ -49,7 +49,7 @@ const FAMILIAS = [
     nombre: "Métodos de strings",
     emoji: "🔤",
     resumen: "Acciones sobre texto. A la izquierda hay comillas.",
-    ejemplos: ["split()", "trim()", "replace()", "includes()", "toUpperCase()", "slice()"],
+    ejemplos: ["split()", "trim()", "replace()", "includes()", "startsWith()", "toUpperCase()", "slice()"],
     comoSaber:
       "A la izquierda del punto hay texto (entre comillas, o una variable que contiene texto, o un input.value).",
     ejemplo:
@@ -227,6 +227,12 @@ const SENALES = [
     ejemplo: "texto.length",
   },
   {
+    senal: "Es una palabra suelta: if, else, switch, for, return",
+    significa:
+      "No es un método ni una propiedad: es una estructura de control, la que decide QUÉ código se ejecuta. No lleva punto delante porque no pertenece a ningún objeto.",
+    ejemplo: "if (edad >= 18) { ... }",
+  },
+  {
     senal: "Empieza con mayúscula antes del punto",
     significa: "Es una utilidad global del lenguaje: Object, Math, JSON, Array, Number.",
     ejemplo: "Math.random()",
@@ -274,6 +280,12 @@ const ERRORES_CLASICOS = [
     sintoma: "En consola aparece 'function' en vez del resultado",
     causa: "Te olvidaste los paréntesis al llamar a un método.",
     arreglo: "texto.toUpperCase() con paréntesis. Sin ellos obtienes la función, no su resultado.",
+  },
+  {
+    sintoma: "El if se cumple siempre, pase lo que pase",
+    causa: "Dentro de la condición escribiste = (asignar) en vez de === (comparar).",
+    arreglo:
+      "if (edad === 18). Con un solo = le asignas 18 a la variable, y la asignación devuelve 18, que es verdadero: el bloque entra siempre.",
   },
   {
     sintoma: "undefined al leer .value",
@@ -475,5 +487,18 @@ const RETOS_IDENTIFICAR = [
     correcta: 0,
     explicacion:
       "${ } solo se interpreta dentro de comillas invertidas (template literals). Con comillas normales aparecería tal cual, como texto literal.",
+  },
+  {
+    codigo: 'if (usuario.edad = 18) {\n  console.log("Tiene 18");\n}',
+    marcado: "=",
+    pregunta: "¿Qué hace el <code>=</code> dentro de este if?",
+    opciones: [
+      "Asignar: le pone 18 a usuario.edad, así que el if se cumple siempre",
+      "Comparar si usuario.edad vale 18",
+      "Comparar el valor y el tipo, igual que ===",
+    ],
+    correcta: 0,
+    explicacion:
+      "Un solo = asigna. Además, la asignación devuelve el valor asignado (18), que es verdadero, así que el bloque entra siempre. Para preguntar hace falta ===.",
   },
 ];

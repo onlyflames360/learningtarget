@@ -1,6 +1,8 @@
 // La lógica del quiz. Los datos (DATA, CATEGORIES, LANGS) viven en js/metodos-data.js,
 // que también reutiliza el buscador de buscar.html.
 
+const FILTROS_KEY = "metodos-filtros";
+
 // ---------- Estado ----------
 let langFilter = "JavaScript";
 let catFilter = "Variables";
@@ -13,6 +15,28 @@ let streak = 0;
 let answered = false;
 
 const KEYS = ["a", "b", "c"];
+
+// ---------- Filtros recordados entre visitas ----------
+// Los filtros elegidos se recuerdan de una visita a otra: al volver sigues
+// en el mismo idioma y la misma categoría en la que estabas.
+function recuperarFiltros() {
+  let guardado = {};
+  try {
+    guardado = JSON.parse(localStorage.getItem(FILTROS_KEY)) || {};
+  } catch (e) {}
+  // Se comprueba que sigan existiendo: una categoría vieja dejaría el quiz vacío
+  if (LANGS.includes(guardado.lang)) langFilter = guardado.lang;
+  if (CATEGORIES.includes(guardado.cat)) catFilter = guardado.cat;
+}
+
+function guardarFiltros() {
+  try {
+    localStorage.setItem(
+      FILTROS_KEY,
+      JSON.stringify({ lang: langFilter, cat: catFilter }),
+    );
+  } catch (e) {}
+}
 
 function shuffle(arr) {
   const copy = arr.slice();
@@ -170,6 +194,7 @@ function renderFilters() {
     btn.textContent = lang;
     btn.addEventListener("click", () => {
       langFilter = lang;
+      guardarFiltros();
       renderFilters();
       startRound();
     });
@@ -185,6 +210,7 @@ function renderFilters() {
     btn.textContent = cat;
     btn.addEventListener("click", () => {
       catFilter = cat;
+      guardarFiltros();
       renderFilters();
       startRound();
     });
@@ -220,5 +246,6 @@ document.getElementById("hintToggle").addEventListener("click", () => {
     : "💡 Ver código de ejemplo (sin responder, solo para deducirlo)";
 });
 
+recuperarFiltros();
 renderFilters();
 startRound();

@@ -1,6 +1,8 @@
 // `cards`, `cardsMetodos`, `cardsPensar` y `FILTROS_LANG` vienen de js/index-data.js
 // (métodos de metodos.html + pasos de pensar.html)
 
+const ESTADO_KEY = "index-tarjetas";
+
 let langFilter = "Todos";
 let deck = cards.slice(); // subconjunto activo según el filtro, navegable con Anterior/Siguiente
 let currentIndex = 0;
@@ -72,6 +74,7 @@ function renderCard() {
   );
   updateProgress();
   renderGrids();
+  guardarEstado();
 }
 
 function goToIndex(index) {
@@ -122,6 +125,7 @@ function toggleLearned() {
   }
   updateProgress();
   renderGrids();
+  guardarEstado();
 }
 
 function renderMiniGrid(container, list) {
@@ -144,6 +148,46 @@ function renderMiniGrid(container, list) {
 function renderGrids() {
   renderMiniGrid(gridMetodos, cardsMetodos);
   renderMiniGrid(gridPensar, cardsPensar);
+}
+
+// ---------- Recordar dónde te quedaste ----------
+// Se guarda la pregunta de la tarjeta, no su posición: el botón Mezclar
+// cambia el orden, así que un número dejaría de señalar a la misma tarjeta.
+function guardarEstado() {
+  try {
+    localStorage.setItem(
+      ESTADO_KEY,
+      JSON.stringify({
+        lang: langFilter,
+        pregunta: deck.length ? deck[currentIndex].question : null,
+        aprendidas: [...learned].map((c) => c.question),
+      }),
+    );
+  } catch (e) {}
+}
+
+function recuperarEstado() {
+  let guardado = {};
+  try {
+    guardado = JSON.parse(localStorage.getItem(ESTADO_KEY)) || {};
+  } catch (e) {}
+
+  if (FILTROS_LANG.includes(guardado.lang)) langFilter = guardado.lang;
+
+  deck =
+    langFilter === "Todos"
+      ? cards.slice()
+      : cards.filter((c) => c.lang === langFilter);
+
+  // Las aprendidas se guardan como texto y aquí se vuelven a atar a sus objetos
+  const porPregunta = new Map(cards.map((c) => [c.question, c]));
+  (guardado.aprendidas || []).forEach((pregunta) => {
+    const cardData = porPregunta.get(pregunta);
+    if (cardData) learned.add(cardData);
+  });
+
+  const indice = deck.findIndex((c) => c.question === guardado.pregunta);
+  currentIndex = indice === -1 ? 0 : indice;
 }
 
 document.getElementById("flipBtn").addEventListener("click", toggleFlip);
@@ -173,5 +217,6 @@ document.getElementById("card").addEventListener("keydown", (event) => {
   }
 });
 
+recuperarEstado();
 renderFilters();
 renderCard();
